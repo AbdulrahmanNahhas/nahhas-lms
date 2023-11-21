@@ -14,20 +14,20 @@
     ".vscode": true,
     "node_modules": true,
     "next-env.d.ts": true,
-    ".gitignore": true,
     ".eslintrc.json": true,
     "tsconfig.json": true,
     "package-lock.json": true,
+    "tailwind.config.ts": true,
     ".next": true
   },
   "hide-files.files": [
     ".vscode",
     "node_modules",
     "next-env.d.ts",
-    ".gitignore",
     ".eslintrc.json",
     "tsconfig.json",
     "package-lock.json",
+    "tailwind.config.ts",
     ".next"
   ]
 }
