@@ -4,7 +4,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { SignOutButton, UserButton, UserProfile } from "@clerk/nextjs";
 import { Button } from "./ui/button";
-import { Heart, LogOut, Settings } from "lucide-react";
+import { Heart, LogOut, Settings, User, UserCog } from "lucide-react";
 import Link from "next/link";
 import {
   DropdownMenu,
@@ -59,7 +59,7 @@ const NavbarRoutes = () => {
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="ghost" size={"icon"}>
-              <Settings />
+              <UserCog />
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent className="w-56 lg:w-64 relative right-4 top-0 sm:w-[200px]">
@@ -136,7 +136,6 @@ const NavbarRoutes = () => {
           </DropdownMenuContent>
         </DropdownMenu>
         <DialogContent>
-          {/* <UserProfile /> */}
           <DialogTitle className="md:text-2xl font-bold">Profile</DialogTitle>
           <DialogDescription className="flex items-center gap-2">
             Click On your Profile Image {"->"}
