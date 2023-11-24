@@ -62,7 +62,7 @@ const NavbarRoutes = () => {
               <Settings />
             </Button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent className="w-56 relative right-4 top-0 sm:w-[200px]">
+          <DropdownMenuContent className="w-56 lg:w-64 relative right-4 top-0 sm:w-[200px]">
             <DropdownMenuLabel>My Settings</DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>

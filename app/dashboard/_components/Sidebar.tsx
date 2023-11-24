@@ -9,8 +9,7 @@ const Sidebar = () => {
     <div className="h-full flex flex-col border-r overflow-y-auto bg-background shadow-sm">
       {/* Logo */}
       <div className="px-6 py-3 h-[80px] border-b">
-        <Logo className={cn(buttonVariants({variant: "ghost", size: "lg"}), "w-full h-full py-3")} />
-        <p className="dark:invert"></p>
+        <Logo className={cn(buttonVariants({variant: "ghost", size: "lg"}), "w-full h-full py-3 hover:bg-transparent cursor-pointer")} />
       </div>
       <SidebarRoutes />
       <div className="border border-primary rounded-xl p-3 pt-7 m-6 relative flex flex-col justify-center items-center mt-auto">
