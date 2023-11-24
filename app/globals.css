@@ -67,7 +67,6 @@ body,
 .cl-internal-rx251b {
   box-shadow: none !important;
   margin: 0;
-  /* max-width: 100%; */
   overflow-x: hidden;
 }
 
@@ -75,6 +74,4 @@ body,
 .cl-internal-phfxlr,
 .cl-internal-rx251b {
   max-width: 100%;
-  /* width: 100vw; */
-/* margin: 0; */
 }

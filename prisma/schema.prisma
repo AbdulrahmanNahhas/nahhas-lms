@@ -1,0 +1,51 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model Course {
+  id String @id @default(uuid()) @map("_id") 
+  userId String
+  title String @db.String
+  desription String? @db.String
+  imageUrl String? @db.String
+  price Float?
+  isPublished Boolean @default(false)
+
+  categoryId String?
+  category Category? @relation(fields: [categoryId], references: [id])
+
+  attachments Attachment[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([categoryId])
+}
+
+model Category {
+  id String @id @default(uuid()) @map("_id") 
+  name String @unique
+  courses Course[]
+}
+
+model Attachment {
+  id String @id @default(uuid()) @map("_id")
+  name String
+  url String @db.String
+
+  courseId String
+  course Course @relation(fields: [courseId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([courseId])
+}
