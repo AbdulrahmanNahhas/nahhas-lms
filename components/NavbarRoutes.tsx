@@ -30,9 +30,11 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { useTheme } from "next-themes"
 
 const NavbarRoutes = () => {
   const pathname = usePathname();
+  const { theme, setTheme } = useTheme()
 
   const isTecacherPage = pathname?.includes("/teacher");
   const isPlayerrPage = pathname?.startsWith("/dashboard/chapter");
@@ -83,22 +85,20 @@ const NavbarRoutes = () => {
                 <DropdownMenuPortal>
                   <DropdownMenuSubContent>
                     <DropdownMenuCheckboxItem
-                      checked={true}
-                      onCheckedChange={() => {}}
+                      checked={theme === "light"}
+                      onCheckedChange={() => setTheme("light")}
                     >
                       Light
                     </DropdownMenuCheckboxItem>
                     <DropdownMenuCheckboxItem
-                      checked={false}
-                      onCheckedChange={() => {}}
-                      disabled
+                      checked={theme === "dark"}
+                      onCheckedChange={() => setTheme("dark")}
                     >
                       Dark
                     </DropdownMenuCheckboxItem>
                     <DropdownMenuCheckboxItem
-                      checked={false}
-                      onCheckedChange={() => {}}
-                      disabled
+                      checked={theme === "system"}
+                      onCheckedChange={() => setTheme("system")}
                     >
                       System
                     </DropdownMenuCheckboxItem>
