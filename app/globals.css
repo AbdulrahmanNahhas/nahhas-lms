@@ -1,7 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
- 
+
 html,
 body,
 :root {
@@ -31,7 +31,7 @@ body,
     --ring: 142.1 76.2% 36.3%;
     --radius: 0.5rem;
   }
- 
+
   .dark {
     --background: 20 14.3% 4.1%;
     --foreground: 0 0% 95%;
@@ -54,7 +54,7 @@ body,
     --ring: 142.4 71.8% 29.2%;
   }
 }
- 
+
 @layer base {
   * {
     @apply border-border;
@@ -64,14 +64,25 @@ body,
   }
 }
 
-.cl-internal-rx251b {
-  box-shadow: none !important;
-  margin: 0;
-  overflow-x: hidden;
+.rfm-marquee-container {
+  position: relative;
 }
 
-.cl-internal-2tn0z0,
-.cl-internal-phfxlr,
-.cl-internal-rx251b {
-  max-width: 100%;
+.rfm-marquee-container::before,
+.rfm-marquee-container::after {
+  background: linear-gradient(to right, hsl(var(--background)), hsl(var(--background)), transparent);
+  content: "";
+  height: 100%;
+  position: absolute;
+  width: 150px;
+  z-index: 2;
+}
+
+.rfm-marquee-container::after {
+  background: linear-gradient(to left, hsl(var(--background)), hsl(var(--background)), transparent);
+  content: "";
+  height: 100%;
+  position: absolute;
+  right: 0;
+  z-index: 2;
 }

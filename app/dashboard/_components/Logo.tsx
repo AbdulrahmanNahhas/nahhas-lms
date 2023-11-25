@@ -1,23 +1,7 @@
-import { cn } from "@/lib/utils";
-import Image from "next/image";
-
 export const Logo = ({className}: {className:string}) => {
   return (
-    <>
-    <Image
-      height={130}
-      width={130}
-      alt="logo"
-      src="/logo_dark.svg"
-      className={cn(className, "block dark:hidden")}
-    />
-    <Image
-      height={130}
-      width={130}
-      alt="logo"
-      src="/logo.svg"
-      className={cn(className, "hidden dark:block")}
-    />
-    </>
+    <h1 className="font-bold w-full h-full flex items-center justify-center gap-1 text-lg md:text-xl">
+      <span>NAHHAS</span><span className="text-primary">LMS</span>
+    </h1>
   )
 }
