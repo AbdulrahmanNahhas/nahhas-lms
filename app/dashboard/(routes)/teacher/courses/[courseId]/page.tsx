@@ -2,6 +2,8 @@ import { db } from "@/lib/db";
 import { auth } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
 import { FaBrush } from "react-icons/fa6";
+import TitleForm from "./_components/TitleForm";
+import DescriptionForm from "./_components/DescriptionForm";
 
 const Course = async ({ params }: { params: { courseId: string } }) => {
   const { userId } = auth();
@@ -24,7 +26,7 @@ const Course = async ({ params }: { params: { courseId: string } }) => {
 
   const requiredFields = [
     course.title,
-    course.desription,
+    course.description,
     course.imageUrl,
     course.price,
     course.categoryId,
@@ -35,17 +37,21 @@ const Course = async ({ params }: { params: { courseId: string } }) => {
   const completionText = `(${completedFileds}/${totalFileds})`;
 
   return (
-    <div className="container px-4 p-6">
+    <div className="container p-6">
       <div className="flex items-start justify-center flex-col">
         <h1 className="text-5xl font-bold mb-2">Completing Course Info</h1>
         <span className="text-sm text-muted-foreground">
           Complete all fields {completionText}
         </span>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 mt-16 gap-6">
-        <div className="flex items-center gap-x-2">
-          <FaBrush className="w-8 h-8 p-2 bg-accent rounded-lg text-primary" />
-          <h2 className="text-xl">Customize your course</h2>
+      <div className="grid grid-cols-1 md:grid-cols-2 mt-12 gap-6">
+        <div>
+          <div className="flex items-center gap-x-2">
+            <FaBrush className="w-8 h-8 p-2 bg-accent rounded-lg text-primary" />
+            <h2 className="text-xl">Customize your course</h2>
+          </div>
+          <TitleForm initialData={course} courseId={courseId} />
+          <DescriptionForm initialData={course} courseId={courseId} />
         </div>
       </div>
     </div>

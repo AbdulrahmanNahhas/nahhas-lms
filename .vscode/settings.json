@@ -17,7 +17,6 @@
     ".eslintrc.json": true,
     "tsconfig.json": true,
     "package-lock.json": true,
-    "tailwind.config.ts": true,
     ".next": true
   },
   "hide-files.files": [
@@ -27,7 +26,6 @@
     ".eslintrc.json",
     "tsconfig.json",
     "package-lock.json",
-    "tailwind.config.ts",
     ".next"
   ]
 }

@@ -1,0 +1,108 @@
+:root {
+  --swiper-navigation-size: 16px;
+}
+.swiper-button-prev,
+.swiper-button-next {
+  position: absolute;
+  top: 0;
+  width: var(--swiper-navigation-size);
+  height: var(--swiper-navigation-size);
+  /* margin-top: 50px; */
+  z-index: 99999999;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: hsl(var(--foreground));
+  background: hsl(var(--accent)) !important;
+  border-radius: var(--radius);
+  padding: 18px !important;
+}
+.swiper-button-prev.swiper-button-disabled,
+.swiper-button-next.swiper-button-disabled {
+  opacity: 0.35;
+  cursor: auto;
+  pointer-events: none;
+}
+.swiper-button-prev.swiper-button-hidden,
+.swiper-button-next.swiper-button-hidden {
+  opacity: 0;
+  cursor: auto;
+  pointer-events: none;
+}
+.swiper-navigation-disabled .swiper-button-prev,
+.swiper-navigation-disabled .swiper-button-next {
+  display: none !important;
+}
+.swiper-button-prev svg,
+.swiper-button-next svg {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transform-origin: center;
+}
+.swiper-rtl .swiper-button-prev svg,
+.swiper-rtl .swiper-button-next svg {
+  transform: rotate(180deg);
+}
+.swiper-button-prev,
+.swiper-rtl .swiper-button-next {
+  right: calc(var(--swiper-navigation-top-offset, 50%) + 5px) !important;
+  left: auto;
+}
+.swiper-button-next,
+.swiper-rtl .swiper-button-prev {
+  left: calc(var(--swiper-navigation-top-offset, 50%) + 5px) !important;
+  right: auto;
+}
+.swiper-button-lock {
+  display: none;
+}
+/* Navigation font start */
+.swiper-button-prev:after,
+.swiper-button-next:after {
+  font-family: swiper-icons;
+  font-size: var(--swiper-navigation-size);
+  text-transform: none !important;
+  letter-spacing: 0;
+  font-variant: initial;
+  line-height: 1;
+}
+.swiper-button-prev:after,
+.swiper-rtl .swiper-button-next:after {
+  content: 'prev';
+}
+.swiper-button-next,
+.swiper-rtl .swiper-button-prev {
+  right: var(--swiper-navigation-sides-offset, 10px);
+  left: auto;
+}
+.swiper-button-next:after,
+.swiper-rtl .swiper-button-prev:after {
+  content: 'next';
+}
+/* Navigation font end */
+.swiper-slide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* background: blue !important; */
+  /* min-width: none;
+  max-width: none;
+  width: auto; */
+}
+@media (min-width: 940px) and (max-width: 1400px) {
+  .swiper-slide:nth-child(even) {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+  .swiper-slide:nth-child(odd) {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+  }
+}
+.swiper {
+  padding-top: 60px;
+}

@@ -1,4 +1,4 @@
-import { SignOutButton, UserButton } from "@clerk/nextjs";
+import { SignOutButton, UserProfile } from "@clerk/nextjs";
 import { Heart } from "lucide-react";
 
 import {
@@ -27,7 +27,6 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "./ui/button";
 import User from "./User";
-import Link from "next/link";
 
 const ProfileButton = () => {
   return (
@@ -93,8 +92,8 @@ const ProfileButton = () => {
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
-      <DialogContent>
-        <DialogTitle className="md:text-2xl font-bold">Profile</DialogTitle>
+      <DialogContent className="h-full lg:h-[95vh] w-full !rounded-none lg:!rounded-xl max-w-none lg:max-w-[1000px] flex items-center justify-center">
+        {/* <DialogTitle className="md:text-2xl font-bold">Profile</DialogTitle>
         <DialogDescription className="flex items-center gap-2">
           Click On your Profile Image {"->"}
           <UserButton />
@@ -102,7 +101,12 @@ const ProfileButton = () => {
         <DialogFooter>
           Sorry We have a problem, so you need to open your profile from the
           profile image here (up).
-        </DialogFooter>
+        </DialogFooter> */}
+        {/* <div className="w-full fixed h-screen overflow-hidden flex justify-center items-center top-0 left-0 bg-[#00000068] z-[9999]"> */}
+          <div className="w-min relative max-h-[90vh] overflow-y-scroll bg-background rounded-xl shadow">
+            <UserProfile />
+          </div>
+        {/* </div> */}
       </DialogContent>
     </Dialog>
   );
