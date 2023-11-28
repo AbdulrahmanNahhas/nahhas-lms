@@ -13,22 +13,21 @@ import { Input } from "@/components/ui/input";
 import { TbLoader3 } from "react-icons/tb";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
-import { cn } from "@/lib/utils";
-import { Textarea } from "@/components/ui/textarea";
 
-interface DescriptionFormProps {
+interface ImageFormProps {
   initialData: {
-    description: string;
+    image: string;
   };
   courseId: string;
 }
+
 const formSchema = z.object({
-  description: z.string().min(1, {
-    message: "Description is required",
+  image: z.string().min(1, {
+    message: "Image is required",
   }),
 });
 
-const DescriptionForm = ({ initialData, courseId }: DescriptionFormProps) => {
+const ImageForm = ({ initialData, courseId }: ImageFormProps) => {
   const [isEditing, setIsEditing] = useState(false);
   const toggleEdit = () => setIsEditing((current) => !current);
   const router = useRouter();
@@ -42,7 +41,6 @@ const DescriptionForm = ({ initialData, courseId }: DescriptionFormProps) => {
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-      console.log(values);
       await axios.patch(`/api/courses/${courseId}`, values)
       toast.success("Course Updated!");
       toggleEdit();
@@ -55,7 +53,7 @@ const DescriptionForm = ({ initialData, courseId }: DescriptionFormProps) => {
   return (
     <div className="mt-6 border bg-accent/20 rounded-lg p-4  ">
       <div className="font-medium text-lg flex items-start justify-between">
-        Course Description
+        Course Image
         <Button variant={"ghost"} onClick={toggleEdit}>
           {isEditing ? (
             <>
@@ -72,11 +70,11 @@ const DescriptionForm = ({ initialData, courseId }: DescriptionFormProps) => {
       </div>
       {isEditing ? (
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 mt-3">
-            <FormField control={form.control} name="description" render={({field} ) => (
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 xl:space-y-0 mt-3 xl:flex xl:gap-2 xl:w-full xl:justify-start xl:items-start">
+            <FormField control={form.control} name="image" render={({field} ) => (
               <FormItem className="w-full">
                 <FormControl>
-                  <Textarea disabled={isSubmitting} placeholder="e.g. 'This course is about...'" {...field} />
+                  <Input disabled={isSubmitting} placeholder="e.g. 'Advanced web development'" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -91,12 +89,10 @@ const DescriptionForm = ({ initialData, courseId }: DescriptionFormProps) => {
           </form>
         </Form>
       ) : (
-        <p className={cn("mt-0 text-sm", !initialData.description && "text-muted-foreground italic")}>
-          {initialData.description || "No description"}
-        </p>
+        <p className="mt-0 text-sm">{initialData.image}</p>
       )}
     </div>
   );
 };
 
-export default DescriptionForm;
+export default ImageForm;

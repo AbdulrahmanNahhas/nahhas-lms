@@ -4,6 +4,7 @@ import { redirect } from "next/navigation";
 import { FaBrush } from "react-icons/fa6";
 import TitleForm from "./_components/TitleForm";
 import DescriptionForm from "./_components/DescriptionForm";
+import ImageForm from "./_components/ImageForm";
 
 const Course = async ({ params }: { params: { courseId: string } }) => {
   const { userId } = auth();
@@ -52,6 +53,7 @@ const Course = async ({ params }: { params: { courseId: string } }) => {
           </div>
           <TitleForm initialData={course} courseId={courseId} />
           <DescriptionForm initialData={course} courseId={courseId} />
+          <ImageForm initialData={course} courseId={courseId} />
         </div>
       </div>
     </div>

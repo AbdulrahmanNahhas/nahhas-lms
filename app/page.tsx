@@ -170,7 +170,13 @@ const page = () => {
           </p>
         </h1>
         <CoursesList />
-        <Link href="/dashboard/search" className={cn(buttonVariants({variant: "link"}), "text-foreground underline hover:no-underline hover:bg-accent flex gap-2 items-center")}>
+        <Link
+          href="/dashboard/search"
+          className={cn(
+            buttonVariants({ variant: "link" }),
+            "text-foreground underline hover:no-underline hover:bg-accent flex gap-2 items-center"
+          )}
+        >
           <span>See All</span>
           <FiExternalLink />
         </Link>
