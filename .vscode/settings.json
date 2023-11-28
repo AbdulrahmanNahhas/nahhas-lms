@@ -29,5 +29,6 @@
   "editor.tokenColorCustomizations": {
     "comments": "",
     "textMateRules": []
-  }
+  },
+  "editor.inlineSuggest.showToolbar": "onHover"
 }

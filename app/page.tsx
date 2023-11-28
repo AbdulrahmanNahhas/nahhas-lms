@@ -6,7 +6,7 @@ import Link from "next/link";
 import Marquee from "react-fast-marquee";
 import { FiExternalLink } from "react-icons/fi";
 import CoursesList from "@/components/Course/CoursesList";
-import BentoGrid from "@bentogrid/core";
+import BentoGrid from "@/components/BentoGrid";
 
 const courses = [
   {
@@ -117,7 +117,7 @@ const page = () => {
 
   return (
     <div className="flex flex-col gap-6">
-      <section className="flex flex-col items-center justify-center h-full container  gap-6 pt-10 md:pt-24 lg:pt-36">
+      <section className="flex flex-col items-center justify-center h-full container gap-6 pt-10 md:pt-24 lg:pt-36">
         <h1 className="font-bold text-2xl max-w-none sm:text-3xl sm:max-w-3xl md:text-4xl md:max-w-4xl lg:text-6xl lg:max-w-6xl text-center">
           Teaching in the Internet age means we must teach{" "}
           <span className="text-primary">tomorrow's</span> skills today
@@ -163,7 +163,7 @@ const page = () => {
           ))}
         </Marquee>
       </section>
-      <section className="flex flex-col items-center justify-center h-full container  gap-6 py-10 pb-10 md:pb-24 lg:pb-36 ">
+      <section className="flex flex-col items-center justify-center h-full container gap-6 py-14">
         <h1 className="font-bold text-xl max-w-none sm:text-2xl sm:max-w-2xl md:text-3xl md:max-w-3xl lg:text-5xl lg:max-w-5xl text-center">
           Latest Courses
           <p className="text-muted-foreground text-sm md:text-base max-w-3xl text-center font-light mt-3">
@@ -182,11 +182,7 @@ const page = () => {
           <FiExternalLink />
         </Link>
       </section>
-      {/* <div class="bentogrid">
-        <div data-bento="1x1">Hello</div>
-        <div data-bento="2x2">أثممخ</div>
-        <div data-bento="2x1">Hi</div>
-      </div> */}
+      <BentoGrid />
     </div>
   );
 };
