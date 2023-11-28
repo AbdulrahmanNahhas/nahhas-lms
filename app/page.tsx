@@ -6,6 +6,7 @@ import Link from "next/link";
 import Marquee from "react-fast-marquee";
 import { FiExternalLink } from "react-icons/fi";
 import CoursesList from "@/components/Course/CoursesList";
+import BentoGrid from "@bentogrid/core";
 
 const courses = [
   {
@@ -181,6 +182,11 @@ const page = () => {
           <FiExternalLink />
         </Link>
       </section>
+      {/* <div class="bentogrid">
+        <div data-bento="1x1">Hello</div>
+        <div data-bento="2x2">أثممخ</div>
+        <div data-bento="2x1">Hi</div>
+      </div> */}
     </div>
   );
 };
