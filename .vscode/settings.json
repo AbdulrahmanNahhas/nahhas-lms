@@ -30,5 +30,5 @@
     "comments": "",
     "textMateRules": []
   },
-  "editor.inlineSuggest.showToolbar": "onHover"
+  "editor.inlineSuggest.showToolbar": "always"
 }

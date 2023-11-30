@@ -5,6 +5,8 @@ import { FaBrush } from "react-icons/fa6";
 import TitleForm from "./_components/TitleForm";
 import DescriptionForm from "./_components/DescriptionForm";
 import ImageForm from "./_components/ImageForm";
+import Combobox from "@/components/ui/combox";
+import CategoryForm from "./_components/CategoryForm";
 
 const Course = async ({ params }: { params: { courseId: string } }) => {
   const { userId } = auth();
@@ -20,6 +22,13 @@ const Course = async ({ params }: { params: { courseId: string } }) => {
       userId: userId,
     },
   });
+
+  const categories = await db.category.findMany({
+    orderBy: {
+      name: "asc",
+    },
+  });
+
   if (!course) {
     console.log("Course not found!");
     return redirect("/dashboard/teacher/courses");
@@ -53,6 +62,14 @@ const Course = async ({ params }: { params: { courseId: string } }) => {
           </div>
           <TitleForm initialData={course} courseId={courseId} />
           <DescriptionForm initialData={course} courseId={courseId} />
+          <CategoryForm
+            initialData={course}
+            courseId={courseId}
+            options={categories.map((category) => ({
+              label: category.name,
+              value: category.id,
+            }))}
+          />
           <ImageForm initialData={course} courseId={courseId} />
         </div>
       </div>
