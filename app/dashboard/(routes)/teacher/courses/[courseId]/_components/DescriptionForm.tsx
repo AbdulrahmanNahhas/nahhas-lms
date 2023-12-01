@@ -54,7 +54,7 @@ const DescriptionForm = ({ initialData, courseId }: DescriptionFormProps) => {
   };
 
   return (
-    <div className="mt-6 border bg-accent/20 rounded-lg p-4  ">
+    <div className=" border bg-accent/50 dark:bg-accent/20 rounded-lg p-4  ">
       <div className="font-medium text-lg flex items-start justify-between">
         Course Description
         <Button variant={"ghost"} onClick={toggleEdit}>

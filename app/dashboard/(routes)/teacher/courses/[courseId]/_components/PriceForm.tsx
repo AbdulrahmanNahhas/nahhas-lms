@@ -13,28 +13,29 @@ import { Input } from "@/components/ui/input";
 import { TbLoader3 } from "react-icons/tb";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
+import { Course } from "@prisma/client";
+import { cn } from "@/lib/utils";
+import { formatPrice } from "@/lib/formats";
 
-interface TitleFormProps {
-  initialData: {
-    title: string;
-  };
+interface PriceFormProps {
+  initialData: Course;
   courseId: string;
 }
 
 const formSchema = z.object({
-  title: z.string().min(8, {
-    message: "Title is required - Minimum 8 letters",
-  }),
+  price: z.coerce.number()
 });
 
-const TitleForm = ({ initialData, courseId }: TitleFormProps) => {
+const PriceForm = ({ initialData, courseId }: PriceFormProps) => {
   const [isEditing, setIsEditing] = useState(false);
   const toggleEdit = () => setIsEditing((current) => !current);
   const router = useRouter();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
-    defaultValues: initialData,
+    defaultValues: {
+      price: initialData?.price || undefined
+    },
   });
 
   const { isSubmitting, isValid } = form.formState;
@@ -53,7 +54,7 @@ const TitleForm = ({ initialData, courseId }: TitleFormProps) => {
   return (
     <div className=" border bg-accent/50 dark:bg-accent/20 rounded-lg p-4  ">
       <div className="font-medium text-lg flex items-start justify-between">
-        Course Title
+        Course Price
         <Button variant={"ghost"} onClick={toggleEdit}>
           {isEditing ? (
             <>
@@ -63,7 +64,7 @@ const TitleForm = ({ initialData, courseId }: TitleFormProps) => {
           ) : (
             <>
               <FaPencilAlt className="h-4 w-4 mr-2" />
-              Edit Text
+              Edit Price
             </>
           )}
         </Button>
@@ -71,10 +72,10 @@ const TitleForm = ({ initialData, courseId }: TitleFormProps) => {
       {isEditing ? (
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 xl:space-y-0 mt-3 xl:flex xl:gap-2 xl:w-full xl:justify-start xl:items-start">
-            <FormField control={form.control} name="title" render={({field} ) => (
+            <FormField control={form.control} name="price" render={({field} ) => (
               <FormItem className="w-full">
                 <FormControl>
-                  <Input disabled={isSubmitting} placeholder="e.g. 'Advanced web development'" {...field} />
+                  <Input type="number" disabled={isSubmitting} step="0.1" placeholder="Set a price for your course" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -89,10 +90,12 @@ const TitleForm = ({ initialData, courseId }: TitleFormProps) => {
           </form>
         </Form>
       ) : (
-        <p className="mt-0 text-sm">{initialData.title}</p>
+        <p className={cn("mt-0 text-sm", initialData.price === undefined && "text-muted-foreground !italic")}>
+          {initialData.price != undefined ? initialData.price == 0 ? "For Free" : formatPrice(initialData.price) : "No price"}
+        </p>
       )}
     </div>
   );
 };
 
-export default TitleForm;
+export default PriceForm;

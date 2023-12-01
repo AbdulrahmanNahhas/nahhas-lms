@@ -1,12 +1,15 @@
 import { db } from "@/lib/db";
 import { auth } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
-import { FaBrush } from "react-icons/fa6";
+import { FaListCheck } from "react-icons/fa6";
+import { BiSolidCustomize } from "react-icons/bi";
+import { BsCurrencyDollar } from "react-icons/bs";
+import { FaFileInvoice } from "react-icons/fa";
 import TitleForm from "./_components/TitleForm";
 import DescriptionForm from "./_components/DescriptionForm";
 import ImageForm from "./_components/ImageForm";
-import Combobox from "@/components/ui/combox";
 import CategoryForm from "./_components/CategoryForm";
+import PriceForm from "./_components/PriceForm";
 
 const Course = async ({ params }: { params: { courseId: string } }) => {
   const { userId } = auth();
@@ -47,17 +50,17 @@ const Course = async ({ params }: { params: { courseId: string } }) => {
   const completionText = `(${completedFileds}/${totalFileds})`;
 
   return (
-    <div className="container p-6">
+    <div className="container p-6 md:flex md:flex-col md:items-start md:justify-center min-h-full">
       <div className="flex items-start justify-center flex-col">
         <h1 className="text-5xl font-bold mb-2">Completing Course Info</h1>
         <span className="text-sm text-muted-foreground">
           Complete all fields {completionText}
         </span>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 mt-12 gap-6">
-        <div>
+      <div className="grid grid-cols-1 lg:grid-cols-2 mt-12 gap-6 w-full">
+        <div className="space-y-6">
           <div className="flex items-center gap-x-2">
-            <FaBrush className="w-8 h-8 p-2 bg-accent rounded-lg text-primary" />
+            <BiSolidCustomize className="w-8 h-8 p-2 bg-accent rounded-lg text-primary" />
             <h2 className="text-xl">Customize your course</h2>
           </div>
           <TitleForm initialData={course} courseId={courseId} />
@@ -71,6 +74,24 @@ const Course = async ({ params }: { params: { courseId: string } }) => {
             }))}
           />
           <ImageForm initialData={course} courseId={courseId} />
+        </div>
+        <div className="space-y-6">
+          <div className="flex items-center gap-x-2">
+            <FaListCheck className="w-8 h-8 p-2 bg-accent rounded-lg text-primary" />
+            <h2 className="text-xl">Course chapters</h2>
+          </div>
+          <div className="border bg-accent/50 dark:bg-accent/20 rounded-lg p-4">
+            Coming Soon
+          </div>
+          <div className="flex items-center gap-x-2">
+            <BsCurrencyDollar className="w-8 h-8 p-2 bg-accent rounded-lg text-primary" />
+            <h2 className="text-xl">Sell your course</h2>
+          </div>
+          <PriceForm initialData={course} courseId={courseId} />
+          <div className="flex items-center gap-x-2">
+            <FaFileInvoice className="w-8 h-8 p-2 bg-accent rounded-lg text-primary" />
+            <h2 className="text-xl">Resources & Attachments</h2>
+          </div>
         </div>
       </div>
     </div>
