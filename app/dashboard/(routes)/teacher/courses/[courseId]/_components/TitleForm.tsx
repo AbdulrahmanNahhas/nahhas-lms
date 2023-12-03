@@ -54,7 +54,7 @@ const TitleForm = ({ initialData, courseId }: TitleFormProps) => {
     <div className=" border bg-accent/50 dark:bg-accent/20 rounded-lg p-4  ">
       <div className="font-medium text-lg flex items-start justify-between">
         <span className="flex items-center justify-center gap-2">
-          {isSubmitting && <BiLoader className="animate-spin w-6 h-6" />}
+          {isSubmitting && <BiLoader className="animate-spin w-5 h-5" />}
           Course Title
         </span>
         <Button variant={"ghost"} onClick={toggleEdit}>

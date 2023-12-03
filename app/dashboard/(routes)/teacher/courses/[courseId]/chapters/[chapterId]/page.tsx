@@ -9,14 +9,11 @@ import { BiSolidCustomize } from "react-icons/bi";
 import { FaEye, FaVideo } from "react-icons/fa";
 import ChapterTitleForm from "./_components/ChapterTitleForm";
 import ChapterDescriptionForm from "./_components/ChapterDescriptionForm";
+import ChapterAccessFormForm from "./_components/ChapterAccessForm";
+import ChapterVideoForm from "./_components/ChapterVideoForm";
 
-const page = async ({
-  params,
-}: {
-  params: { courseId: string; chapterId: string };
-}) => {
+const page = async ({params}: {params: { courseId: string; chapterId: string };}) => {
   const { userId } = auth();
-
   if (!userId) {
     return redirect("/");
   }
@@ -27,18 +24,14 @@ const page = async ({
       courseId: params.courseId,
     },
   });
-
   if (!chapter) {
     return redirect("/");
   }
 
   const requiredFields = [chapter.title, chapter.description, chapter.videoUrl];
-
   const totalFields = requiredFields.length;
   const completedFields = requiredFields.filter(Boolean).length;
-
   const completionText = `(${completedFields}/${totalFields})`;
-
   const isComplete = requiredFields.every(Boolean);
 
   return (
@@ -96,22 +89,22 @@ const page = async ({
               <FaEye className="w-8 h-8 p-2 bg-accent rounded-lg text-primary" />
               <h2 className="text-xl">Access Settings</h2>
             </div>
-            {/* <ChapterAccessForm
+            <ChapterAccessFormForm
                 initialData={chapter}
                 courseId={params.courseId}
                 chapterId={params.chapterId}
-              /> */}
+              />
           </div>
           <div className="space-y-4">
             <div className="flex items-center gap-x-2">
               <FaVideo className="w-8 h-8 p-2 bg-accent rounded-lg text-primary" />
               <h2 className="text-xl">Add video</h2>
             </div>
-            {/* <ChapterVideoForm
+            <ChapterVideoForm
               initialData={chapter}
               chapterId={params.chapterId}
               courseId={params.courseId}
-            /> */}
+            />
           </div>
         </div>
       </div>

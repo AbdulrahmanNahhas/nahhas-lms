@@ -61,24 +61,24 @@ const Data = [
     "hours": 30,
     "description": "Master the art of business with Entrepreneur James. From startup strategies to management skills, this course prepares you for the business world."
   },
-  {
-    "title": "Mechatronics",
-    "image": "https://plus.unsplash.com/premium_photo-1663054378169-8ffea2e11c42?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8QUl8ZW58MHx8MHx8fDA%3D",
-    "teacherName": "Engineer Fatima",
-    "teacherRank": "Mechatronics Expert",
-    "lessons": 18,
-    "hours": 28,
-    "description": "Embark on a journey into the world of Mechatronics guided by Engineer Fatima. Learn about the integration of mechanical and electronic systems in this hands-on course."
-  },
-  {
-    "title": "How to use ChatGPT",
-    "image": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fiphonesoft.fr%2Fimages%2F2023%2F01%2Fchatgpt-logo-header-banner.jpg&f=1&nofb=1&ipt=71b6734ff72bc11d4f4ae6fe7fb7913640038075c6f473cd227cc93f5e425d7d&ipo=images",
-    "teacherName": "AI Specialist Alex",
-    "teacherRank": "ChatGPT Guru",
-    "lessons": 5,
-    "hours": 10,
-    "description": "Unlock the full potential of ChatGPT with AI Specialist Alex. Learn the ins and outs of using ChatGPT for various applications and enhance your interaction with AI."
-  }
+  // {
+  //   "title": "Mechatronics",
+  //   "image": "https://plus.unsplash.com/premium_photo-1663054378169-8ffea2e11c42?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8QUl8ZW58MHx8MHx8fDA%3D",
+  //   "teacherName": "Engineer Fatima",
+  //   "teacherRank": "Mechatronics Expert",
+  //   "lessons": 18,
+  //   "hours": 28,
+  //   "description": "Embark on a journey into the world of Mechatronics guided by Engineer Fatima. Learn about the integration of mechanical and electronic systems in this hands-on course."
+  // },
+  // {
+  //   "title": "How to use ChatGPT",
+  //   "image": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fiphonesoft.fr%2Fimages%2F2023%2F01%2Fchatgpt-logo-header-banner.jpg&f=1&nofb=1&ipt=71b6734ff72bc11d4f4ae6fe7fb7913640038075c6f473cd227cc93f5e425d7d&ipo=images",
+  //   "teacherName": "AI Specialist Alex",
+  //   "teacherRank": "ChatGPT Guru",
+  //   "lessons": 5,
+  //   "hours": 10,
+  //   "description": "Unlock the full potential of ChatGPT with AI Specialist Alex. Learn the ins and outs of using ChatGPT for various applications and enhance your interaction with AI."
+  // }
 ];
 
 const CoursesList = () => {

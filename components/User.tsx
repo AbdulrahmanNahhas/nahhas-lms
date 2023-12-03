@@ -1,6 +1,7 @@
 "use server";
 
 import { auth, clerkClient } from "@clerk/nextjs";
+import Image from "next/image";
 
 const User = async () => {
   const { userId } = auth();
@@ -11,9 +12,9 @@ const User = async () => {
     return (
       <div className="flex items-center justify-center gap-2">
         {user.hasImage ? (
-          <img src={user.imageUrl} alt="logo" className="h-7 w-7 rounded-lg" />
+          <Image height={80} width={80} src={user.imageUrl} alt="logo" className="h-7 w-7 rounded-lg" />
         ): (
-          <img src={`https://ui-avatars.com/api/?name=${user.firstName}+${user.lastName}&background=random`} alt="logo" className="h-8 w-8 rounded-xl" />
+          <Image height={140} width={140} src={`https://ui-avatars.com/api/?name=${user.firstName}+${user.lastName}&background=random`} alt="logo" className="h-8 w-8 rounded-xl" />
         )}
         <div className="flex flex-col items-start justify-center gap-0">
         {/* string.charAt(0).toUpperCase() + string.slice(1) */}

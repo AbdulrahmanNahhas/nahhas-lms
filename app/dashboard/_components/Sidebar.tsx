@@ -3,7 +3,6 @@ import { Logo } from "./Logo";
 import { cn } from "@/lib/utils";
 import SidebarRoutes from "./SidebarRoutes";
 import { Heart } from "lucide-react";
-import DonateButton from "@/components/DonateButton";
 
 const Sidebar = () => {
   return (

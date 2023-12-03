@@ -100,3 +100,68 @@ html {
             user-select: none; /* Non-prefixed version, currently
                                   supported by Chrome, Edge, Opera and Firefox */
 }
+
+.ql-container {
+  font-size: 16px !important;
+}
+.quill * {
+  background-color: hsl(var(--background)) !important;
+  color: hsl(var(--foreground)) !important;
+  border: none !important;
+}
+.ql-stroke {
+  color: hsl(var(--foreground)) !important;
+  stroke: hsl(var(--foreground)) !important;
+}
+.ql-formats button {
+  margin: 0 2px;
+}
+.ql-formats button:hover > svg,
+.ql-formats button:hover {
+  background-color: hsl(var(--accent)) !important;
+  border-radius: 5px;
+}
+.ql-toolbar {
+  border: 1px solid hsl(var(--border)) !important;
+  border-radius: 5px;
+  margin-top: 10px !important;
+}
+.ql-editor {
+  border: 1px solid hsl(var(--border)) !important;
+  border-radius: 5px;
+  margin-top: 10px !important;
+}
+.ql-picker-options {
+  z-index: 999;
+  border: 1px solid hsl(var(--border)) !important;
+  border-radius: 10px;
+}
+.ql-expanded .ql-picker-options {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 4px !important;
+  padding: 0 4px;
+}
+.ql-picker-item {
+  padding: 0 10px;
+  border-radius: 10px;
+}
+.ql-picker-item:hover {
+  background-color: hsl(var(--accent)) !important;
+  padding: 0 10px;
+  border-radius: 10px;
+}
+
+.ql-image svg .ql-fill,
+.ql-image svg .ql-even.ql-fill {
+  color: hsl(var(--foreground)) !important;
+  fill: hsl(var(--foreground)) !important;
+}
+.ql-strike .ql-fill {
+  color: hsl(var(--foreground)) !important;
+  fill: hsl(var(--foreground)) !important;
+}
+.ql-strike:hover .ql-fill {
+  color: hsl(var(--primary)) !important;
+  fill: hsl(var(--primary)) !important;
+}

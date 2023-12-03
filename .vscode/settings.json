@@ -6,27 +6,9 @@
     "**/CVS": true,
     "**/.DS_Store": true,
     "**/Thumbs.db": true,
-    "**/.trunk/*actions/": true,
-    "**/.trunk/*logs/": true,
-    "**/.trunk/*notifications/": true,
-    "**/.trunk/*out/": true,
-    "**/.trunk/*plugins/": true,
-    ".vscode": true,
-    "node_modules": true,
-    "next-env.d.ts": true,
-    ".eslintrc.json": true,
-    "tsconfig.json": true,
-    "package-lock.json": true,
-    ".next": true
   },
   "hide-files.files": [
-    ".vscode",
-    "node_modules",
-    "next-env.d.ts",
-    ".eslintrc.json",
-    "tsconfig.json",
-    "package-lock.json",
-    ".next"
+    "node_modules"
   ],
   "editor.tokenColorCustomizations": {
     "comments": "",

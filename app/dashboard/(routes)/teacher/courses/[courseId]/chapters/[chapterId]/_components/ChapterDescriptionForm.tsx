@@ -15,6 +15,8 @@ import { useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { Textarea } from "@/components/ui/textarea";
 import { Chapter, Course } from "@prisma/client";
+import Editor from "@/components/Editor";
+import Preview from "@/components/Preview";
 
 interface ChapterDescriptionFormProps {
   initialData: Chapter;
@@ -54,7 +56,7 @@ const ChapterDescriptionForm = ({ initialData, courseId, chapterId }: ChapterDes
     <div className=" border bg-accent/50 dark:bg-accent/20 rounded-lg p-4  ">
       <div className="font-medium text-lg flex items-start justify-between">
         <span className="flex items-center justify-center gap-2">
-          {isSubmitting && <BiLoader className="animate-spin w-6 h-6" />}
+          {isSubmitting && <BiLoader className="animate-spin w-5 h-5" />}
           Chapter Description
         </span>
         <Button variant={"ghost"} onClick={toggleEdit}>
@@ -77,7 +79,7 @@ const ChapterDescriptionForm = ({ initialData, courseId, chapterId }: ChapterDes
             <FormField control={form.control} name="description" render={({field} ) => (
               <FormItem className="w-full">
                 <FormControl>
-                  <Textarea disabled={isSubmitting} placeholder="e.g. 'This course is about...'" {...field} />
+                  <Editor {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -85,15 +87,18 @@ const ChapterDescriptionForm = ({ initialData, courseId, chapterId }: ChapterDes
             <div className="flex items-center gap-x-2">
               <Button disabled={!isValid || isSubmitting}
               type="submit">
-                Save Changes
+                Submit
               </Button>
             </div>
           </form>
         </Form>
       ) : (
-        <p className={cn("mt-0 text-sm", !initialData.description && "text-muted-foreground italic")}>
-          {initialData.description || "No description"}
-        </p>
+        <div className={cn("mt-0 text-sm", !initialData.description && "text-muted-foreground italic")}>
+          {!initialData.description && "No description"}
+          {initialData.description && (
+            <Preview value={initialData.description}/>
+          )}
+        </div>
       )}
     </div>
   );

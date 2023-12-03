@@ -7,6 +7,7 @@ import Marquee from "react-fast-marquee";
 import { FiExternalLink } from "react-icons/fi";
 import CoursesList from "@/components/Course/CoursesList";
 import BentoGrid from "@/components/BentoGrid";
+import Image from "next/image";
 
 const courses = [
   {
@@ -39,16 +40,16 @@ const courses = [
     image:
       "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8YnVzc2luZXNzfGVufDB8fDB8fHww",
   },
-  {
-    title: "Mechatrnoics",
-    image:
-      "https://plus.unsplash.com/premium_photo-1663054378169-8ffea2e11c42?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8QUl8ZW58MHx8MHx8fDA%3D",
-  },
-  {
-    title: "How to use ChatGPT",
-    image:
-      "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fiphonesoft.fr%2Fimages%2F2023%2F01%2Fchatgpt-logo-header-banner.jpg&f=1&nofb=1&ipt=71b6734ff72bc11d4f4ae6fe7fb7913640038075c6f473cd227cc93f5e425d7d&ipo=images",
-  },
+  // {
+  //   title: "Mechatrnoics",
+  //   image:
+  //     "https://plus.unsplash.com/premium_photo-1663054378169-8ffea2e11c42?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8QUl8ZW58MHx8MHx8fDA%3D",
+  // },
+  // {
+  //   title: "How to use ChatGPT",
+  //   image:
+  //     "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fiphonesoft.fr%2Fimages%2F2023%2F01%2Fchatgpt-logo-header-banner.jpg&f=1&nofb=1&ipt=71b6734ff72bc11d4f4ae6fe7fb7913640038075c6f473cd227cc93f5e425d7d&ipo=images",
+  // },
 ];
 const courses2 = [
   {
@@ -56,11 +57,11 @@ const courses2 = [
     image:
       "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OTF8fEFJfGVufDB8fDB8fHww",
   },
-  {
-    title: "IT & Software ",
-    image:
-      "https://plus.unsplash.com/premium_photo-1663012876180-86a7fc80ca86?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NjF8fElUJTIwJTI2JTIwU29mdHdhcmV8ZW58MHx8MHx8fDA%3D",
-  },
+  // {
+  //   title: "IT & Software ",
+  //   image:
+  //     "https://plus.unsplash.com/premium_photo-1663012876180-86a7fc80ca86?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NjF8fElUJTIwJTI2JTIwU29mdHdhcmV8ZW58MHx8MHx8fDA%3D",
+  // },
   {
     title: "Marketing",
     image:
@@ -103,7 +104,9 @@ const CourseImage = ({ course }: { course: courseProps }) => {
       <span className="opacity-0 duration-300 group-hover:opacity-100 absolute z-50 bottom-0 left-0 text-foreground bg-background px-4 py-2 text-lg rounded-tr-xl">
         {course.title}
       </span>
-      <img
+      <Image
+        width={1000}
+        height={500}
         src={course.image}
         alt="image"
         className="h-full w-full object-cover"
@@ -120,7 +123,7 @@ const page = () => {
       <section className="flex flex-col items-center justify-center h-full container gap-6 pt-10 md:pt-24 lg:pt-36">
         <h1 className="font-bold text-2xl max-w-none sm:text-3xl sm:max-w-3xl md:text-4xl md:max-w-4xl lg:text-6xl lg:max-w-6xl text-center">
           Teaching in the Internet age means we must teach{" "}
-          <span className="text-primary">tomorrow's</span> skills today
+          <span className="text-primary">tomorrow&apos;s</span> skills today
         </h1>
         <p className="text-muted-foreground text-sm md:text-base max-w-3xl text-center font-light">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi a

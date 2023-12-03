@@ -8,6 +8,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import Image from "next/image";
 
 interface CourseCardProps {
   image: string;
@@ -23,7 +24,9 @@ const CourseCard = ({ image, teacher, rank, description, hours, lessons }: Cours
     <Dialog>
       <div className="overflow-hidden rounded-2xl border group cursor-pointer w-[400px]">
         <div className="w-[400px] h-[260px] overflow-hidden">
-          <img
+          <Image
+            height={540}
+            width={960}
             className="w-full h-full object-cover duration-200 group-hover:scale-105"
             src={image}
             alt="image"

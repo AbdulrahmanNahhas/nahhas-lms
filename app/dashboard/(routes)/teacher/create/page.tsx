@@ -63,7 +63,7 @@ function CreateCourse() {
       <h1 className="font-bold text-xl sm:text-2xl md:text-3xl">Name your Course</h1>
       <p className="text-muted-foreground mt-1 text-sm sm:text-base">
         What would you like to name your course?
-        Don't worry, you can change this later.
+        Don&apos;t worry, you can change this later.
       </p>
       {/* <hr className="my-4" /> */}
       <Form {...form}>
