@@ -7,12 +7,22 @@ async function main() {
     await database.category.deleteMany();
     await database.category.createMany({
       data: [
-        { name: "Computer Science" },
-        { name: "Fitness" },
-        { name: "Design" },
-        { name: "Accounting" },
-        { name: "Engineering" },
-        { name: "Filming" }
+        { name: "Programming" },
+        { name: "Web Development" },
+        { name: "Data Science" },
+        { name: "Mobile App Development" },
+        { name: "Artificial Intelligence" },
+        { name: "Cybersecurity" },
+        { name: "Game Development" },
+        { name: "Graphic Design" },
+        { name: "Digital Marketing" },
+        { name: "Robotics" },
+        { name: "Business & Entrepreneurship" },
+        { name: "Photography" },
+        { name: "Health & Fitness" },
+        { name: "Languages" },
+        { name: "Music & Audio Production" },
+        { name: "Other..." }
       ]
     })
 

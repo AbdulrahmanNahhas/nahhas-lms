@@ -9,7 +9,7 @@ import { FaPencilAlt } from "react-icons/fa";
 import { MdOutlineCancel, MdOutlineChangeCircle } from "react-icons/md";
 import { useState } from "react";
 import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form";
-import { TbLoader3 } from "react-icons/tb";
+import { BiLoader } from "react-icons/bi";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
@@ -59,7 +59,10 @@ const CategoryForm = ({ initialData, courseId, options }: CategoryFormProps) => 
   return (
     <div className=" border bg-accent/50 dark:bg-accent/20 rounded-lg p-4">
       <div className="font-medium text-lg flex items-start justify-between">
-        Course Category
+        <span className="flex items-center justify-center gap-2">
+          {isSubmitting && <BiLoader className="animate-spin w-6 h-6" />}
+          Course Category
+        </span>
         <Button variant={"ghost"} onClick={toggleEdit}>
           {isEditing ? (
             <>
@@ -92,7 +95,6 @@ const CategoryForm = ({ initialData, courseId, options }: CategoryFormProps) => 
             <div className="flex items-center gap-x-2">
               <Button disabled={!isValid || isSubmitting}
               type="submit">
-                {!isValid || isSubmitting && <TbLoader3 className="mr-1 animate-spin" />}
                 Save Changes
               </Button>
             </div>

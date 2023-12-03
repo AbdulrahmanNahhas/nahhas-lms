@@ -1,7 +1,9 @@
-const Searchpage = () => {
+const Searchpage = async () => {
   return (
-    <div>Search Courses</div>
-  )
-}
+    <div className="container">
+      All Courses
+    </div>
+  );
+};
 
-export default Searchpage
+export default Searchpage;

@@ -10,6 +10,7 @@ import DescriptionForm from "./_components/DescriptionForm";
 import ImageForm from "./_components/ImageForm";
 import CategoryForm from "./_components/CategoryForm";
 import PriceForm from "./_components/PriceForm";
+import ChaptersForm from "./_components/ChaptersForm";
 
 const Course = async ({ params }: { params: { courseId: string } }) => {
   const { userId } = auth();
@@ -24,6 +25,13 @@ const Course = async ({ params }: { params: { courseId: string } }) => {
       id: courseId,
       userId: userId,
     },
+    include: {
+      chapters: {
+        orderBy: {
+          position: "asc"
+        }
+      }
+    }
   });
 
   const categories = await db.category.findMany({
@@ -34,15 +42,16 @@ const Course = async ({ params }: { params: { courseId: string } }) => {
 
   if (!course) {
     console.log("Course not found!");
-    return redirect("/dashboard/teacher/courses");
+    return redirect("/dashboard/search");
   }
 
   const requiredFields = [
     course.title,
     course.description,
     course.imageUrl,
-    course.price,
+    course.price != undefined,
     course.categoryId,
+    course.chapters.some(chapter => chapter.isPublished),
   ];
   const totalFileds = requiredFields.length;
   const completedFileds = requiredFields.filter(Boolean).length;
@@ -80,18 +89,12 @@ const Course = async ({ params }: { params: { courseId: string } }) => {
             <FaListCheck className="w-8 h-8 p-2 bg-accent rounded-lg text-primary" />
             <h2 className="text-xl">Course chapters</h2>
           </div>
-          <div className="border bg-accent/50 dark:bg-accent/20 rounded-lg p-4">
-            Coming Soon
-          </div>
+          <ChaptersForm initialData={course} courseId={courseId} />
           <div className="flex items-center gap-x-2">
             <BsCurrencyDollar className="w-8 h-8 p-2 bg-accent rounded-lg text-primary" />
             <h2 className="text-xl">Sell your course</h2>
           </div>
           <PriceForm initialData={course} courseId={courseId} />
-          <div className="flex items-center gap-x-2">
-            <FaFileInvoice className="w-8 h-8 p-2 bg-accent rounded-lg text-primary" />
-            <h2 className="text-xl">Resources & Attachments</h2>
-          </div>
         </div>
       </div>
     </div>

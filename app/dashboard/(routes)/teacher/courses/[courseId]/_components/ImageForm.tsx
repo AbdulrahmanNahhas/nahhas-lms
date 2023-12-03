@@ -15,7 +15,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { TbLoader3 } from "react-icons/tb";
+import { BiLoader } from "react-icons/bi";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { Course } from "@prisma/client";
@@ -23,7 +23,10 @@ import { BiSolidImageAdd } from "react-icons/bi";
 import { MdOutlineImagesearchRoller } from "react-icons/md";
 import { FaImage } from "react-icons/fa6";
 import Image from "next/image";
-import { FileUpload } from "@/components/FileUpload";
+import FileUpload from "@/components/FileUpload";
+import { CldImage } from "next-cloudinary";
+import { getPublicIdFromCloudinaryURL } from "@/lib/formats";
+// import { FileUpload } from "@/components/FileUpload";
 
 interface ImageFormProps {
   initialData: Course;
@@ -64,7 +67,10 @@ const ImageForm = ({ initialData, courseId }: ImageFormProps) => {
   return (
     <div className=" border bg-accent/50 dark:bg-accent/20 rounded-lg p-4  ">
       <div className="font-medium text-lg flex items-start justify-between">
-        Course Image
+        <span className="flex items-center justify-center gap-2">
+          {isSubmitting && <BiLoader className="animate-spin w-6 h-6" />}
+          Course Image
+        </span>
         <Button variant={"ghost"} onClick={toggleEdit} disabled={isSubmitting}>
           {isEditing && (
             <>
@@ -88,7 +94,7 @@ const ImageForm = ({ initialData, courseId }: ImageFormProps) => {
       </div>
       {isEditing && (
         <div>
-          <Form {...form}>
+          {/* <Form {...form}>
             <form
               onSubmit={form.handleSubmit(onSubmit)}
               className="space-y-4 xl:space-y-0 mt-3 xl:flex xl:gap-2 xl:w-full xl:justify-start xl:items-start"
@@ -110,37 +116,44 @@ const ImageForm = ({ initialData, courseId }: ImageFormProps) => {
                 )}
               ></FormField>
               <div className="flex items-center gap-x-2">
-                <Button disabled={!isValid || isSubmitting} type="submit" variant="default">
+                <Button
+                  disabled={!isValid || isSubmitting}
+                  type="submit"
+                  variant="default"
+                >
                   {!isValid ||
                     (isSubmitting && (
-                      <TbLoader3 className="mr-1 animate-spin" />
+                      <BiLoader className="mr-1 animate-spin" />
                     ))}
                   Save
                 </Button>
               </div>
             </form>
-          </Form>
-          <FileUpload
-            endpoint="courseImage"
-            onChange={(url) => {
-              if (url) {
-                onSubmit({ imageUrl: url });
-              }
-            }}
-            className="opacity-50 cursor-not-allowed"
-          />
-          <div className="text-xs text-muted-foreground mt-4">
-            {/* 16:9 aspect ratio recommended */}
-            Image uploading is not available right now.
+          </Form> */}
+          <div>
+            <FileUpload
+              onChange={(url) => {
+                if (url) {
+                  onSubmit({ imageUrl: url });
+                }
+              }}
+            />
           </div>
+          <span className="text-xs text-muted-foreground mt-4">
+            16:9 aspect ratio recommended
+          </span>
         </div>
       )}
       {!isEditing && initialData.imageUrl && (
         <div className="relative aspect-video mt-2">
-          <img
-            src={initialData.imageUrl}
-            alt="Course Image"
-            className="object-cover aspect-video rounded-xl"
+          {/* https://res.cloudinary.com/dceqm5pnu/image/upload/v1701449387/courses_images/bpghnhllevcducufgsdm.jpg */}
+          <CldImage
+            aspectRatio="video"
+            width={1600}
+            height={900}
+            src={getPublicIdFromCloudinaryURL(initialData.imageUrl)}
+            alt={"Image"}
+            className="rounded-3xl border"
           />
         </div>
       )}

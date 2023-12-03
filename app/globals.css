@@ -64,6 +64,10 @@ body,
   }
 }
 
+html {
+  background-color: hsl(var(--background));
+  background: hsl(var(--background));
+}
 .rfm-marquee-container {
   position: relative;
 }
@@ -96,5 +100,3 @@ body,
             user-select: none; /* Non-prefixed version, currently
                                   supported by Chrome, Edge, Opera and Firefox */
 }
-
-@import "~@uploadthing/react/styles.css"

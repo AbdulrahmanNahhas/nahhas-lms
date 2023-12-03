@@ -16,7 +16,8 @@
     "next-env.d.ts": true,
     ".eslintrc.json": true,
     "tsconfig.json": true,
-    "package-lock.json": true
+    "package-lock.json": true,
+    ".next": true
   },
   "hide-files.files": [
     ".vscode",
@@ -24,7 +25,8 @@
     "next-env.d.ts",
     ".eslintrc.json",
     "tsconfig.json",
-    "package-lock.json"
+    "package-lock.json",
+    ".next"
   ],
   "editor.tokenColorCustomizations": {
     "comments": "",

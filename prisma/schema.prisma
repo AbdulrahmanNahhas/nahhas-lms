@@ -1,5 +1,6 @@
 generator client {
   provider = "prisma-client-js"
+  previewFeatures = ["fullTextSearch", "fullTextIndex"]
 }
 
 datasource db {
@@ -19,12 +20,14 @@ model Course {
   categoryId String?
   category Category? @relation(fields: [categoryId], references: [id])
 
-  attachments Attachment[]
+  chapters Chapter[]
+  purchases Purchase[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
   @@index([categoryId])
+  @@fulltext([title])
 }
 
 model Category {
@@ -33,16 +36,75 @@ model Category {
   courses Course[]
 }
 
-model Attachment {
-  id String @id @default(uuid()) @map("_id")
-  name String
-  url String @db.String
+// model Attachment {
+//   id String @id @default(uuid()) @map("_id") 
+//   name String
+//   url String @db.String
+
+//   courseId String
+//   course Course @relation(fields: [courseId], references: [id], onDelete: Cascade)
+
+//   createdAt DateTime @default(now())
+//   updatedAt DateTime @updatedAt
+
+//   @@index([courseId])
+// }
+
+model Chapter {
+  id String @id @default(uuid()) @map("_id") 
+  title String
+  description String? @db.String
+  videoUrl String? @db.String
+  position Int
+  isPublished Boolean @default(false)
+  isFree Boolean @default(false)
 
   courseId String
   course Course @relation(fields: [courseId], references: [id], onDelete: Cascade)
+
+  userProgress UserProgress[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
   @@index([courseId])
+}
+
+model UserProgress {
+  id String @id @default(uuid()) @map("_id") 
+  userId String
+
+  chapterId String
+  chapter Chapter @relation(fields: [chapterId], references: [id], onDelete: Cascade)
+
+  isCompleted Boolean @default(false)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([chapterId])
+  @@unique([userId, chapterId])
+}
+
+model Purchase {
+  id String @id @default(uuid()) @map("_id") 
+  userId String
+
+  courseId String
+  course Course @relation(fields: [courseId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt()
+
+  @@unique([userId, courseId])
+  @@index([courseId])
+}
+
+model StripeCustomer {
+  id String @id @default(uuid()) @map("_id") 
+  userId String @unique
+  stripeCustomerId String @unique
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }

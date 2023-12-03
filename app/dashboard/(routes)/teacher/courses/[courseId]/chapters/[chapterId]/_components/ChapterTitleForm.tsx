@@ -14,20 +14,19 @@ import { BiLoader } from "react-icons/bi";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 
-interface TitleFormProps {
+interface ChapterTitleFormProps {
   initialData: {
     title: string;
   };
   courseId: string;
+  chapterId: string;
 }
 
 const formSchema = z.object({
-  title: z.string().min(8, {
-    message: "Title is required - Minimum 8 letters",
-  }),
+  title: z.string().min(1),
 });
 
-const TitleForm = ({ initialData, courseId }: TitleFormProps) => {
+const ChapterTitleForm = ({ initialData, courseId, chapterId }: ChapterTitleFormProps) => {
   const [isEditing, setIsEditing] = useState(false);
   const toggleEdit = () => setIsEditing((current) => !current);
   const router = useRouter();
@@ -41,8 +40,8 @@ const TitleForm = ({ initialData, courseId }: TitleFormProps) => {
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-      await axios.patch(`/api/courses/${courseId}`, values)
-      toast.success("Course Updated!");
+      await axios.patch(`/api/courses/${courseId}/chapters/${chapterId}`, values)
+      toast.success("Chapter Updated!");
       toggleEdit();
       router.refresh();
     } catch (error) {
@@ -77,7 +76,7 @@ const TitleForm = ({ initialData, courseId }: TitleFormProps) => {
             <FormField control={form.control} name="title" render={({field} ) => (
               <FormItem className="w-full">
                 <FormControl>
-                  <Input disabled={isSubmitting} placeholder="e.g. 'Advanced web development'" {...field} />
+                  <Input disabled={isSubmitting} placeholder="e.g. 'Introduction to the course'" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -97,4 +96,4 @@ const TitleForm = ({ initialData, courseId }: TitleFormProps) => {
   );
 };
 
-export default TitleForm;
+export default ChapterTitleForm;

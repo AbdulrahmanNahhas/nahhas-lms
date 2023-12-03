@@ -9,40 +9,40 @@ import { FaPencilAlt } from "react-icons/fa";
 import { MdOutlineCancel } from "react-icons/md";
 import { useState } from "react";
 import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
 import { BiLoader } from "react-icons/bi";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
+import { cn } from "@/lib/utils";
+import { Textarea } from "@/components/ui/textarea";
+import { Chapter, Course } from "@prisma/client";
 
-interface TitleFormProps {
-  initialData: {
-    title: string;
-  };
+interface ChapterDescriptionFormProps {
+  initialData: Chapter;
   courseId: string;
+  chapterId: string
 }
-
 const formSchema = z.object({
-  title: z.string().min(8, {
-    message: "Title is required - Minimum 8 letters",
-  }),
+  description: z.string().min(1),
 });
 
-const TitleForm = ({ initialData, courseId }: TitleFormProps) => {
+const ChapterDescriptionForm = ({ initialData, courseId, chapterId }: ChapterDescriptionFormProps) => {
   const [isEditing, setIsEditing] = useState(false);
   const toggleEdit = () => setIsEditing((current) => !current);
   const router = useRouter();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
-    defaultValues: initialData,
+    defaultValues: {
+      description: initialData?.description || ""
+    },
   });
 
   const { isSubmitting, isValid } = form.formState;
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-      await axios.patch(`/api/courses/${courseId}`, values)
-      toast.success("Course Updated!");
+      await axios.patch(`/api/courses/${courseId}/chapters/${chapterId}`, values)
+      toast.success("Chapter Updated!");
       toggleEdit();
       router.refresh();
     } catch (error) {
@@ -55,7 +55,7 @@ const TitleForm = ({ initialData, courseId }: TitleFormProps) => {
       <div className="font-medium text-lg flex items-start justify-between">
         <span className="flex items-center justify-center gap-2">
           {isSubmitting && <BiLoader className="animate-spin w-6 h-6" />}
-          Course Title
+          Chapter Description
         </span>
         <Button variant={"ghost"} onClick={toggleEdit}>
           {isEditing ? (
@@ -73,11 +73,11 @@ const TitleForm = ({ initialData, courseId }: TitleFormProps) => {
       </div>
       {isEditing ? (
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 xl:space-y-0 mt-3 xl:flex xl:gap-2 xl:w-full xl:justify-start xl:items-start">
-            <FormField control={form.control} name="title" render={({field} ) => (
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 mt-3">
+            <FormField control={form.control} name="description" render={({field} ) => (
               <FormItem className="w-full">
                 <FormControl>
-                  <Input disabled={isSubmitting} placeholder="e.g. 'Advanced web development'" {...field} />
+                  <Textarea disabled={isSubmitting} placeholder="e.g. 'This course is about...'" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -91,10 +91,12 @@ const TitleForm = ({ initialData, courseId }: TitleFormProps) => {
           </form>
         </Form>
       ) : (
-        <p className="mt-0 text-sm">{initialData.title}</p>
+        <p className={cn("mt-0 text-sm", !initialData.description && "text-muted-foreground italic")}>
+          {initialData.description || "No description"}
+        </p>
       )}
     </div>
   );
 };
 
-export default TitleForm;
+export default ChapterDescriptionForm;
