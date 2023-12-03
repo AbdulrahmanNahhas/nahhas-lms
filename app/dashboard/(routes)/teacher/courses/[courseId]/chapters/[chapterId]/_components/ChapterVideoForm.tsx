@@ -243,7 +243,7 @@ const ChapterVideoForm = ({
       )}
       {!isEditing && initialData.videoUrl && (
         <div className="relative aspect-video mt-2">
-          <ReactPlayer url={"https://giistyxelor.s3.amazonaws.com/giists/video/video0cP3w019TiZYYcUy22WY.mp4"} controls width={"100%"} height={"100%"} />
+          <ReactPlayer url={initialData.videoUrl} controls width={"100%"} height={"100%"} style={{borderRadius: 15, overflow: "hidden"}}/>
         </div>
       )}
       {!isEditing && !initialData.videoUrl && (
