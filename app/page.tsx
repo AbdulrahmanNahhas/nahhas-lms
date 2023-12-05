@@ -132,7 +132,7 @@ const page = () => {
         </p>
         <div className="flex items-center justify-center gap-4">
           {userId ? (
-            <Link className={buttonVariants({ size: "lg" })} href="/dashboard">
+            <Link className={buttonVariants({ size: "lg" })} href="">
               Dashboard
             </Link>
           ) : (
@@ -142,7 +142,7 @@ const page = () => {
           )}
           <Link
             className={buttonVariants({ variant: "outline", size: "lg" })}
-            href="/dashboard/search"
+            href="/search"
           >
             Browse Courses
           </Link>
@@ -175,7 +175,7 @@ const page = () => {
         </h1>
         <CoursesList />
         <Link
-          href="/dashboard/search"
+          href="/search"
           className={cn(
             buttonVariants({ variant: "link" }),
             "text-foreground underline hover:no-underline hover:bg-accent flex gap-2 items-center"

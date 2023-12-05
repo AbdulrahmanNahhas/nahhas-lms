@@ -8,12 +8,12 @@ import Link from "next/link";
 const NavbarRoutesClient = () => {
   const pathname = usePathname();
   const isTecacherPage = pathname?.includes("/teacher");
-  const isPlayerrPage = pathname?.startsWith("/dashboard/chapter");
+  const isPlayerrPage = pathname?.startsWith("/chapter");
 
   return (
     <>
       {isTecacherPage || isPlayerrPage ? (
-        <Link href="/dashboard">
+        <Link href="">
           <Button variant={"ghost"}>
             <LogOut className="h-4 w-4 mr-2" />
             Exit
@@ -21,7 +21,7 @@ const NavbarRoutesClient = () => {
         </Link>
       ) : (
         <Button variant={"outline"} size={"sm"} asChild>
-          <Link href="/dashboard/teacher/courses">Teacher Mode</Link>
+          <Link href="/teacher/courses">Teacher Mode</Link>
         </Button>
       )}
     </>

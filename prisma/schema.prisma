@@ -36,20 +36,6 @@ model Category {
   courses Course[]
 }
 
-// model Attachment {
-//   id String @id @default(uuid()) @map("_id") 
-//   name String
-//   url String @db.String
-
-//   courseId String
-//   course Course @relation(fields: [courseId], references: [id], onDelete: Cascade)
-
-//   createdAt DateTime @default(now())
-//   updatedAt DateTime @updatedAt
-
-//   @@index([courseId])
-// }
-
 model Chapter {
   id String @id @default(uuid()) @map("_id") 
   title String
