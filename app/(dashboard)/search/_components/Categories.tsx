@@ -31,6 +31,7 @@ const Categories = ({items}: CategoriesProps) => {
         <CategoryItem
           key={category.id}
           label={category.name}
+          value={category.id}
           icon={IconMap[category.name]}
         />
       ))}
