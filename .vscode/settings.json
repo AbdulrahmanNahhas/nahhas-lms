@@ -14,7 +14,6 @@
     "node_modules": true,
     ".next": true,
     ".vscode": true,
-    "scripts": true,
     ".eslintrc.json": true,
     ".gitignore": true,
     "next-env.d.ts": true,
@@ -23,14 +22,12 @@
     "postcss.config.js": true,
     "package-lock.json": true,
     "next.config.js": true,
-    "components.json": true,
-    ".env": true
+    "components.json": true
   },
   "hide-files.files": [
     "node_modules",
     ".next",
     ".vscode",
-    "scripts",
     ".eslintrc.json",
     ".gitignore",
     "next-env.d.ts",
@@ -39,8 +36,7 @@
     "postcss.config.js",
     "package-lock.json",
     "next.config.js",
-    "components.json",
-    ".env"
+    "components.json"
   ],
   "editor.tokenColorCustomizations": {
     "comments": "",
