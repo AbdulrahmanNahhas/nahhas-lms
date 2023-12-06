@@ -36,6 +36,7 @@
     "next": "14.0.3",
     "next-cloudinary": "^5.10.0",
     "next-themes": "^0.2.1",
+    "query-string": "^8.1.0",
     "react": "^18",
     "react-confetti": "^6.1.0",
     "react-dom": "^18",

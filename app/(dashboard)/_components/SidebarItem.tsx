@@ -12,7 +12,7 @@ interface SidebarItemProps {
 
 const SidebarItem = ({icon: Icon, label, href}: SidebarItemProps) => {
   const pathname = usePathname();
-  const isActive = (pathname === "/" && href === "/") || pathname === href || pathname?.startsWith(`/${href}/`);
+  const isActive = (pathname === "/" && href === "/") || pathname === href || pathname?.startsWith(`${href}/`);
 
   return (
     <Button asChild variant={"ghost"} size={"lg"} className={cn("flex items-center justify-start gap-x-3 p-4 text-sm font-[500] transition-all duration-200", (isActive ? " bg-primary/5 text-primary opacity-100 hover:bg-primary/10 hover:text-primary" : "opacity-60 hover:opacity-100"))}>

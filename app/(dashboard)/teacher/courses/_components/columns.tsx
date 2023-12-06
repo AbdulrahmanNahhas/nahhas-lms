@@ -69,7 +69,7 @@ export const columns: ColumnDef<Course>[] = [
       }).format(price);
 
       return (
-        <Badge variant={price === 0 ? "default": "secondary"} className={price !== 0 && price !== null ? " bg-transparent border-transparent" : ""}>
+        <Badge variant={price === 0 ? "secondary": "outline"} className={price !== 0 && price !== null ? " bg-transparent border-transparent" : ""}>
           {price === 0 && "For Free"}
           {price === null && "Undefined"}
           {price !== 0 && price !== null && (

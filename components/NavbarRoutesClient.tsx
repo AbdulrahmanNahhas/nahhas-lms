@@ -13,12 +13,12 @@ const NavbarRoutesClient = () => {
   return (
     <>
       {isTecacherPage || isPlayerrPage ? (
-        <Link href="">
-          <Button variant={"ghost"}>
+        <Button variant={"ghost"} asChild>
+          <Link href="/dashboard">
             <LogOut className="h-4 w-4 mr-2" />
             Exit
-          </Button>
-        </Link>
+          </Link>
+        </Button>
       ) : (
         <Button variant={"outline"} size={"sm"} asChild>
           <Link href="/teacher/courses">Teacher Mode</Link>
