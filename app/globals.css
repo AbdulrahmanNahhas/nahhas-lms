@@ -22,18 +22,18 @@ body,
     --secondary-foreground: 240 5.9% 10%;
     --muted: 240 4.8% 95.9%;
     --muted-foreground: 240 3.8% 46.1%;
-    --accent: 240 4.8% 95.9%;
+    --accent: 225deg 19% 92%;
     --accent-foreground: 240 5.9% 10%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --border: 240 5.9% 90%;
+    --border: 120deg 3% 89%;
     --input: 240 5.9% 90%;
     --ring: 142.1 76.2% 36.3%;
-    --radius: 0.5rem;
+    --radius: 1rem;
   }
 
   .dark {
-    --background: 20 14.3% 4.1%;
+    --background: 0deg 0% 12%;
     --foreground: 0 0% 95%;
     --card: 24 9.8% 10%;
     --card-foreground: 0 0% 95%;
@@ -41,15 +41,15 @@ body,
     --popover-foreground: 0 0% 95%;
     --primary: 142.1 70.6% 45.3%;
     --primary-foreground: 144.9 80.4% 10%;
-    --secondary: 240 3.7% 15.9%;
+    --secondary: 210deg 4% 18%;
     --secondary-foreground: 0 0% 98%;
     --muted: 0 0% 15%;
     --muted-foreground: 240 5% 64.9%;
-    --accent: 12 6.5% 15.1%;
+    --accent: 210deg 3% 23%;
     --accent-foreground: 0 0% 98%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 85.7% 97.3%;
-    --border: 240 3.7% 15.9%;
+    --border: 150deg 1% 27%;
     --input: 240 3.7% 15.9%;
     --ring: 142.4 71.8% 29.2%;
   }
@@ -164,4 +164,8 @@ html {
 .ql-strike:hover .ql-fill {
   color: hsl(var(--primary)) !important;
   fill: hsl(var(--primary)) !important;
+}
+
+.ytp-pause-overlay {
+  display: hidden !important;
 }

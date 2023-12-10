@@ -48,7 +48,7 @@ const ConfirmDelete = ({courseId, children}: ConfirmDeleteProps) => {
           <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
           <AlertDialogDescription>
             This action cannot be undone. This will permanently delete this
-            chapter and remove it's data from our database.
+            chapter and remove it&apos;s data from our database.
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>

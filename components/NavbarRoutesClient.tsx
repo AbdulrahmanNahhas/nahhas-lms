@@ -5,14 +5,11 @@ import { Button } from "./ui/button";
 import { LogOut } from "lucide-react";
 import Link from "next/link";
 import SearchInput from "./SearchInput";
-import { useAuth } from "@clerk/nextjs";
-import { isTeacher } from "@/lib/teacher";
 
 const NavbarRoutesClient = () => {
-  const {userId} = useAuth();
   const pathname = usePathname();
-  const isTecacherPage = pathname?.includes("/teacher");
-  const isPlayerPage = pathname?.startsWith("/chapter");
+  const isTecacherPage = pathname?.startsWith("/teacher");
+  const isPlayerPage = pathname?.includes("/courses");
   const isSearchPage = pathname === "/search";
 
   return (
@@ -29,11 +26,7 @@ const NavbarRoutesClient = () => {
             Exit
           </Link>
         </Button>
-      ) : isTeacher(userId) ? (
-        <Button variant={"ghost"} asChild className="ml-auto">
-          <Link href="/teacher/courses">Teacher Dashboard</Link>
-        </Button>
-      ): null}
+      ) : null}
     </>
   );
 };

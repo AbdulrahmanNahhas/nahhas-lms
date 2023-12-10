@@ -21,7 +21,6 @@
     "tailwind.config.ts": true,
     "postcss.config.js": true,
     "package-lock.json": true,
-    "next.config.js": true,
     "components.json": true
   },
   "hide-files.files": [
@@ -35,7 +34,6 @@
     "tailwind.config.ts",
     "postcss.config.js",
     "package-lock.json",
-    "next.config.js",
     "components.json"
   ],
   "editor.tokenColorCustomizations": {

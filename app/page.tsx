@@ -8,6 +8,7 @@ import { FiExternalLink } from "react-icons/fi";
 import CoursesList from "@/components/Course/CoursesList";
 import BentoGrid from "@/components/BentoGrid";
 import Image from "next/image";
+import Home_CoursesList from "@/components/Home/Home_CourseList";
 
 const courses = [
   {
@@ -132,16 +133,16 @@ const page = () => {
         </p>
         <div className="flex items-center justify-center gap-4">
           {userId ? (
-            <Link className={buttonVariants({ size: "lg" })} href="">
+            <Link className={cn(buttonVariants({ size: "lg" }), "duration-300 transition-all")} href="/dashboard">
               Dashboard
             </Link>
           ) : (
-            <Link className={buttonVariants({ size: "lg" })} href="/sign-up">
+            <Link className={cn(buttonVariants({ size: "lg" }), "duration-300 transition-all")} href="/sign-up">
               Sign up
             </Link>
           )}
           <Link
-            className={buttonVariants({ variant: "outline", size: "lg" })}
+            className={cn(buttonVariants({ variant: "outline", size: "lg" }), "duration-300 transition-all")}
             href="/search"
           >
             Browse Courses
@@ -173,7 +174,7 @@ const page = () => {
             Find the best course for yourself.
           </p>
         </h1>
-        <CoursesList />
+        <Home_CoursesList />
         <Link
           href="/search"
           className={cn(
