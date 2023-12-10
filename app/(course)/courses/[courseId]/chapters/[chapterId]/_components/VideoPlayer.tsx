@@ -34,13 +34,13 @@ const VideoPlayer = ({
   return (
     <div className="relative h-full w-full flex items-center justify-center !aspect-video">
       {!isReady && !isLocked && (
-        <div className="absolute inset-0 flex flex-col items-center justify-center bg-accent w-full gap-2 !aspect-video rounded-3xl border">
+        <div className="absolute inset-0 flex flex-col items-center justify-center bg-accent w-full gap-2 !aspect-video rounded-2xl border">
           <Loader2 className="h-6 w-6 animate-spin text-accent-foreground" />
           Loading
         </div>
       )}
       {isLocked && (
-        <div className="absolute inset-0 flex flex-col items-center justify-center bg-accent w-full gap-2 !aspect-video rounded-3xl border">
+        <div className="absolute inset-0 flex flex-col items-center justify-center bg-accent w-full gap-2 !aspect-video rounded-2xl border">
           <FaLock className="h-8 w-8 text-accent-foreground" />
           <p className="text-sm">This Chapter is locked</p>
         </div>
@@ -50,15 +50,14 @@ const VideoPlayer = ({
           url={url.includes("youtube.com") ? `${url}?rel=0` : url}
           width={"100%"}
           className={
-            "absolute inset-0 overflow-hidden !aspect-video rounded-3xl border !w-full !h-auto max-h-none"
+            "absolute inset-0 overflow-hidden !aspect-video rounded-2xl border !w-full !h-auto max-h-none"
           }
+          onReady={() => setIsReady(true)}
           onEnded={() => {
             toast.success("Completed, please wait...");
           }}
-          playing={true}
-          onReady={() => setIsReady(true)}
-          autoplay
           controls
+          autoplay
         />
       )}
     </div>

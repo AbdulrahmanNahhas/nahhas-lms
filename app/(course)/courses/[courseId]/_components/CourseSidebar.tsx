@@ -31,7 +31,7 @@ const CourseSidebar = async ({ course, progressCount }: CourseSidebarProps) => {
   });
 
   return (
-    <div className="w-full h-full flex flex-col gap-y-2 shadow-sm overflow-y-auto bg-secondary lg:rounded-br-[50px] border-r border-b">
+    <div className="w-full h-full flex flex-col gap-y-2 shadow-sm overflow-y-auto bg-secondary border-r border-b">
       <div className="p-6 flex items-center justify-start border-b h-[80px]">
         <h1 className={cn("font-semibold", course.title.length <= 30 && "!text-lg", course.title.length <= 20 && "text-xl")}>
           {course.title}

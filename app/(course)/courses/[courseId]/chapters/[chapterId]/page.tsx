@@ -5,6 +5,10 @@ import { redirect } from "next/navigation";
 import { auth } from "@clerk/nextjs";
 import { getChapter } from "@/actions/get-chapter";
 import { Banner } from "@/components/ui/banner";
+import Preview from "@/components/Preview";
+import { Button } from "@/components/ui/button";
+import { FaCheck } from "react-icons/fa6";
+import CourseEnrollButton from "./_components/CourseEnrollButton";
 
 interface ChapterProps {
   params: {
@@ -44,8 +48,8 @@ const page = async ({ params }: ChapterProps) => {
         />
       )}
 
-      <div className="flex flex-col items-center justify-center mx-auto pb-20 max-w-4xl h-full">
-        <div className="p-4 md:p-6 h-full w-full">
+      <div className="flex flex-col mx-auto !pb-10">
+        <div className="p-4 md:p-6 w-full">
           <VideoPlayer
             url={chapter.videoUrl || ""}
             isLocked={isLocked}
@@ -53,6 +57,22 @@ const page = async ({ params }: ChapterProps) => {
             chapterId={params.chapterId}
             completeOnEnd={completeOnEnd}
           />
+        </div>
+        <div className="p-4 flex flex-col">
+          <div className="flex flex-col md:flex-row items-center justify-between mb-2 px-0 md:px-4 gap-2">
+            <h2 className="text-2xl font-semibold">{chapter.title}</h2>
+            {purchase ? (
+              <Button className="flex gap-2 items-center">
+                Mark as complete <FaCheck />
+              </Button>
+            ) : (
+              <CourseEnrollButton
+                courseId={params.courseId}
+                price={course.price!}
+              />
+            )}
+          </div>
+          <Preview value={chapter.description!} />
         </div>
       </div>
     </div>

@@ -39,7 +39,7 @@ const ProfileButton = () => {
                     width={140}
                     src={user.imageUrl}
                     alt="logo"
-                    className="h-10 w-10 rounded-lg"
+                    className="h-10 w-10 rounded-sm group-hover:rounded-3xl !transition-all !duration-300"
                   />
                 ) : (
                   <Image
@@ -47,11 +47,10 @@ const ProfileButton = () => {
                     width={140}
                     src={`https://ui-avatars.com/api/?name=${user.firstName}+${user.lastName}&background=random`}
                     alt="logo"
-                    className="h-10 w-10 rounded-xl"
+                    className="h-10 w-10 rounded-lg"
                   />
                 )}
-                <div className="flex flex-col items-start justify-center gap-0">
-                  {/* string.charAt(0).toUpperCase() + string.slice(1) */}
+                <div className="hidden sm:flex flex-col items-start justify-center gap-0">
                   <p className=" font-semibold flex items-center">
                     {user.firstName?.charAt(0)?.toUpperCase()}
                     {user.firstName?.slice(1)}
@@ -65,7 +64,7 @@ const ProfileButton = () => {
         </DropdownMenuTrigger>
         <DropdownMenuContent
           side="top"
-          className="w-56 lg:w-64 relative -right-4 sm:w-[200px]"
+          className="w-56 lg:w-64 relative right-2 sm:-right-4 sm:w-[200px]"
         >
           <DropdownMenuLabel>My Settings</DropdownMenuLabel>
           <DropdownMenuSeparator />

@@ -218,25 +218,27 @@ const ChapterVideoForm = ({
         </Form>
       )}
       {!isEditing && initialData.videoUrl && (
-        <div className="relative aspect-video mt-2">
+        <div className="relative aspect-video mt-2 !aspect-video">
           <ReactPlayer
             url={initialData.videoUrl}
             controls
             width={"100%"}
             height={"100%"}
             style={{ borderRadius: 15, overflow: "hidden", zIndex: 10 }}
+            className=" !h-full !w-full !max-h-none !max-w-none"
           />
         </div>
       )}
       {!isEditing && !initialData.videoUrl && (
         <>
-          <div className="my-2">
+          <div className="my-2 !aspect-video">
             <ReactPlayer
               url={"."}
               controls
               width={"100%"}
               height={"100%"}
               style={{ borderRadius: 15, overflow: "hidden", zIndex: 10 }}
+              className="!aspect-video !h-full !w-full max-h-none max-w-none"
             />
           </div>
           <span className="text-xs text-muted-foreground pt-6">

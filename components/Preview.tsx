@@ -6,10 +6,11 @@ import React, { useMemo } from 'react';
 import 'react-quill/dist/quill.bubble.css';
 
 interface PreviewProps {
-  value: string
+  value: string;
+  className?: string;
 }
 
-const Preview = ({value}: PreviewProps) => {
+const Preview = ({value, className}: PreviewProps) => {
   const ReactQuill = useMemo(() => dynamic(() => import("react-quill"), {ssr: false}), []);
 
   return (

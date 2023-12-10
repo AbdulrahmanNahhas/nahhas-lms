@@ -7,7 +7,7 @@ import {
 } from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
 import { usePathname, useRouter } from "next/navigation";
-import { FaCircleCheck, FaCirclePlay, FaLock } from "react-icons/fa6";
+import { FaCircleCheck, FaCirclePlay, FaLock, FaPause } from "react-icons/fa6";
 
 interface CourseSidebarItemProps {
   id: string;
@@ -27,8 +27,8 @@ const CourseSidebarItem = ({
   const pathname = usePathname();
   const router = useRouter();
 
-  const Icon = isLocked ? FaLock : isCompleted ? FaCircleCheck : FaCirclePlay;
   const isActive = pathname?.includes(id);
+  const Icon = isLocked ? FaLock : (isCompleted ? FaCircleCheck : (isActive ? FaPause : FaCirclePlay));
 
   const onClick = () => {
     router.push(`/courses/${courseId}/chapters/${id}`);
@@ -37,7 +37,7 @@ const CourseSidebarItem = ({
     <button
       onClick={onClick}
       className={cn(
-        "text-sm flex gap-3 text-break py-2 px-4 hover:bg-accent items-center cursor-pointer w-full justify-start text-start",
+        "text-sm flex gap-3 text-break py-3 px-4 hover:bg-accent items-center cursor-pointer w-full justify-start text-start",
         isActive &&
           "bg-primary/10 text-primary hover:bg-primary/20 hover:text-primary",
         isLocked && "opacity-50 cursor-not-allowed"
