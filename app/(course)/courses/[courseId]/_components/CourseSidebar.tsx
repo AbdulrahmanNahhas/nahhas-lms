@@ -32,12 +32,20 @@ const CourseSidebar = async ({ course, progressCount }: CourseSidebarProps) => {
 
   return (
     <div className="w-full h-full flex flex-col gap-y-2 shadow-sm overflow-y-auto bg-secondary border-r border-b">
-      <div className="p-6 flex items-center justify-start border-b h-[80px]">
+      <div className="p-6 pb-4 --border-b --h-[80px]">
         <h1 className={cn("font-semibold", course.title.length <= 30 && "!text-lg", course.title.length <= 20 && "text-xl")}>
           {course.title}
         </h1>
+        {purchase && (
+          <>
+          <div className="mt-2 rounded-full bg-primary/10">
+            <div className={`h-[4px] w-${progressCount} bg-primary rounded-full`} style={{width: `${progressCount}%`}}></div>
+          </div>
+          <p className={cn("text-sm text-muted-foreground mt-1", progressCount === 100 && "text-primary")}>{Math.round(progressCount)}% Complete</p>
+          </>
+        )}
       </div>
-      <div className="flex flex-col w-full md:py-1 gap-2">
+      <div className="flex flex-col w-full gap-2">
         {course.chapters.map((chapter) => (
           <CourseSidebarItem
             key={chapter.id}

@@ -27,6 +27,8 @@
     "@radix-ui/react-slot": "^1.0.2",
     "@radix-ui/react-tooltip": "^1.0.7",
     "@tanstack/react-table": "^8.10.7",
+    "@uiw/react-markdown-preview": "^5.0.3",
+    "@uiw/react-md-editor": "^4.0.1",
     "@uploadthing/react": "^6.0.2",
     "axios": "^1.6.2",
     "class-variance-authority": "^0.7.0",

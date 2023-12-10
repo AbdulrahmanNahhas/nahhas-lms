@@ -40,11 +40,12 @@ const CourseSidebarItem = ({
         "text-sm flex gap-3 text-break py-3 px-4 hover:bg-accent items-center cursor-pointer w-full justify-start text-start",
         isActive &&
           "bg-primary/10 text-primary hover:bg-primary/20 hover:text-primary",
-        isLocked && "opacity-50 cursor-not-allowed"
+        isLocked && "opacity-50 cursor-not-allowed",
+        isCompleted && !isActive && "opacity-50"
       )}
       disabled={isLocked}
     >
-      <Icon />
+      <Icon className={isCompleted && "text-primary"} />
       {label}
     </button>
   );

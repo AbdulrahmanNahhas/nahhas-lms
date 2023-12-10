@@ -1,4 +1,3 @@
-import { db } from "@/lib/db";
 import React from "react";
 import VideoPlayer from "./_components/VideoPlayer";
 import { redirect } from "next/navigation";
@@ -9,6 +8,7 @@ import Preview from "@/components/Preview";
 import { Button } from "@/components/ui/button";
 import { FaCheck } from "react-icons/fa6";
 import CourseEnrollButton from "./_components/CourseEnrollButton";
+import CourseProgressButton from "./_components/CourseProgressButton";
 
 interface ChapterProps {
   params: {
@@ -48,7 +48,7 @@ const page = async ({ params }: ChapterProps) => {
         />
       )}
 
-      <div className="flex flex-col mx-auto !pb-10">
+      <div className="flex flex-col mx-auto !pb-10 max-w-6xl">
         <div className="p-4 md:p-6 w-full">
           <VideoPlayer
             url={chapter.videoUrl || ""}
@@ -56,15 +56,19 @@ const page = async ({ params }: ChapterProps) => {
             nextChapterId={nextChapter?.id}
             chapterId={params.chapterId}
             completeOnEnd={completeOnEnd}
+            courseId={params.courseId}
           />
         </div>
         <div className="p-4 flex flex-col">
           <div className="flex flex-col md:flex-row items-center justify-between mb-2 px-0 md:px-4 gap-2">
             <h2 className="text-2xl font-semibold">{chapter.title}</h2>
             {purchase ? (
-              <Button className="flex gap-2 items-center">
-                Mark as complete <FaCheck />
-              </Button>
+              <CourseProgressButton
+                chapterId={params.chapterId}
+                courseId={params.courseId}
+                nextChapterId={nextChapter?.id}
+                isCompleted={!!userProgress?.isCompleted}
+              />
             ) : (
               <CourseEnrollButton
                 courseId={params.courseId}
