@@ -27,6 +27,22 @@ interface CategoryFormProps {
 const formSchema = z.object({
   categoryId: z.string().min(1),
 });
+import { IconType } from 'react-icons';
+import { FaCode, FaLaptopCode, FaMicrochip, FaMobileScreenButton, FaPaintbrush } from 'react-icons/fa6';
+
+const IconMap: Record<string, IconType> = {
+  "Programming": FaCode,
+  "Web Development": FaLaptopCode,
+  "Electronics": FaMicrochip,
+  "Mobile App Development": FaMobileScreenButton,
+  "Design": FaPaintbrush,
+};
+
+const Icon = ({Icon}: {Icon: IconType}) => {
+  return (
+    <Icon />
+  )
+}
 
 const CategoryForm = ({ initialData, courseId, options }: CategoryFormProps) => {
   const [isEditing, setIsEditing] = useState(false);
@@ -101,7 +117,8 @@ const CategoryForm = ({ initialData, courseId, options }: CategoryFormProps) => 
           </form>
         </Form>
       ) : (
-        <p className={cn("mt-0 text-sm", !initialData.categoryId && "text-muted-foreground italic")}>
+        <p className={cn("mt-0 text-base flex gap-2 items-center", !initialData.categoryId && "text-muted-foreground italic")}>
+          <Icon Icon={IconMap[selectedOption?.label || ""]} />
           {selectedOption?.label || "No category"}
         </p>
       )}

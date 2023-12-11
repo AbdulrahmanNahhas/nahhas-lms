@@ -4,7 +4,7 @@ import { Category } from '@prisma/client'
 import React from 'react'
 
 import { IconType } from 'react-icons';
-import { FaCode, FaLaptopCode, FaMicrochip, FaMobileScreenButton, FaChartLine, FaNetworkWired, FaDatabase, FaGamepad, FaUserTie, FaBriefcase } from 'react-icons/fa6';
+import { FaCode, FaLaptopCode, FaMicrochip, FaMobileScreenButton, FaPaintbrush } from 'react-icons/fa6';
 import CategoryItem from './CategoryItem';
 
 const IconMap: Record<string, IconType> = {
@@ -12,12 +12,7 @@ const IconMap: Record<string, IconType> = {
   "Web Development": FaLaptopCode,
   "Electronics": FaMicrochip,
   "Mobile App Development": FaMobileScreenButton,
-  "Data Science and Analytics": FaChartLine,
-  "Networking and Security": FaNetworkWired,
-  "Databases": FaDatabase,
-  "Game Development": FaGamepad,
-  "Soft Skills": FaUserTie,
-  "Career Development": FaBriefcase
+  "Design": FaPaintbrush,
 };
 
 interface CategoriesProps {

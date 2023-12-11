@@ -17,6 +17,14 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import { IconType } from "react-icons";
+import {
+  FaCode,
+  FaLaptopCode,
+  FaMicrochip,
+  FaMobileScreenButton,
+  FaPaintbrush,
+} from "react-icons/fa6";
 
 interface ComboboxProps {
   options: {
@@ -27,6 +35,18 @@ interface ComboboxProps {
   onChange: (value: string) => void;
   className?: string;
 }
+
+const IconMap: Record<string, IconType> = {
+  Programming: FaCode,
+  "Web Development": FaLaptopCode,
+  Electronics: FaMicrochip,
+  "Mobile App Development": FaMobileScreenButton,
+  Design: FaPaintbrush,
+};
+
+const Icon = ({ Icon, className }: { Icon: IconType; className?: string }) => {
+  return <Icon />;
+};
 
 export const Combobox = ({
   options,
@@ -64,10 +84,12 @@ export const Combobox = ({
                   onChange(option.value === value ? "" : option.value);
                   setOpen(false);
                 }}
+                className={cn("flex gap-2 items-center", value === option.value ? "opacity-100" : "opacity-75")}
               >
-                <Check
+                <Icon
+                  Icon={IconMap[option.label]}
                   className={cn(
-                    "mr-2 h-4 w-4",
+                    "!mr-2 h-4 w-4",
                     value === option.value ? "opacity-100" : "opacity-10"
                   )}
                 />
