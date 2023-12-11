@@ -161,7 +161,7 @@ const page = () => {
           ))}
         </Marquee>
       </section>
-      <section className="flex flex-col items-center justify-center h-full container gap-6 py-14">
+      {/* <section className="flex flex-col items-center justify-center h-full container gap-6 py-14">
         <h1 className="font-bold text-xl max-w-none sm:text-2xl sm:max-w-2xl md:text-3xl md:max-w-3xl lg:text-5xl lg:max-w-5xl text-center">
           Latest Courses
           <p className="text-muted-foreground text-sm md:text-base max-w-3xl text-center font-light mt-3">
@@ -180,7 +180,7 @@ const page = () => {
           <FiExternalLink />
         </Link>
       </section>
-      <BentoGrid />
+      <BentoGrid /> */}
     </div>
   );
 };

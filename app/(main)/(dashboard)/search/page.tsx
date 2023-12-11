@@ -19,6 +19,7 @@ const Searchpage = async ({searchParams}: SearchPageProps) => {
   if(!userId) {
     return redirect("/");
   }
+
   const categories = await db.category.findMany();
   const courses = await getCourses({
     userId: userId,
