@@ -131,7 +131,7 @@ const page = () => {
           asperiores dolorem temporibus assumenda placeat fugit nobis eaque
           neque aperiam, earum, aliquid dignissimos aspernatur enim.
         </p>
-        <div className="flex items-center justify-center gap-4">
+        <div className="flex items-center justify-center">
           {userId ? (
             <Link className={cn(buttonVariants({ size: "lg" }), "duration-300 transition-all")} href="/dashboard">
               Dashboard
@@ -141,12 +141,6 @@ const page = () => {
               Sign up
             </Link>
           )}
-          <Link
-            className={cn(buttonVariants({ variant: "outline", size: "lg" }), "duration-300 transition-all")}
-            href="/search"
-          >
-            Browse Courses
-          </Link>
         </div>
       </section>
       <section className="flex flex-col items-center justify-center h-full gap-6 py-14 w-screen">

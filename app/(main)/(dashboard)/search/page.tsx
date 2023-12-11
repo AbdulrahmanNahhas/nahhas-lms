@@ -16,12 +16,12 @@ interface SearchPageProps {
 
 const Searchpage = async ({searchParams}: SearchPageProps) => {
   const {userId} = auth();
-  // if(!userId) {
-  //   return redirect("/");
-  // }
+  if(!userId) {
+    return redirect("/");
+  }
   const categories = await db.category.findMany();
   const courses = await getCourses({
-    userId: userId || "",
+    userId: userId,
     ...searchParams,
   })
 
