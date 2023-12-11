@@ -3,11 +3,10 @@
 import { BarChart, Compass, List, Plus } from "lucide-react";
 import SidebarItem from "./SidebarItem";
 import { usePathname } from "next/navigation";
-import { MdInfoOutline } from "react-icons/md";
-import { IoChatboxEllipsesOutline } from "react-icons/io5";
-import { LuLayoutDashboard } from "react-icons/lu";
+import { MdOutlineLeaderboard } from "react-icons/md";
 import { PiStudent } from "react-icons/pi";
 import { cn } from "@/lib/utils";
+import { BiShoppingBag } from "react-icons/bi";
 
 const guestRoutes = [
   {
@@ -21,14 +20,14 @@ const guestRoutes = [
     href: "/search"
   },
   {
-    icon: MdInfoOutline,
-    label: "About us",
-    href: "/about"
+    icon: MdOutlineLeaderboard,
+    label: "Leaderboard",
+    href: "/leaderboard"
   },
   {
-    icon: IoChatboxEllipsesOutline,
-    label: "Contact",
-    href: "/contact"
+    icon: BiShoppingBag,
+    label: "Shop",
+    href: "/shop"
   },
 ]
 const teacherRoutes = [

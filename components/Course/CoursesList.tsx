@@ -16,7 +16,7 @@ interface CourseListProps {
 const CoursesList = ({ items }: CourseListProps) => {
   return (
     <>
-      <div className="flex flex-wrap items-center justify-center gap-6 px-6">
+      <div className="flex flex-wrap items-center justify-start gap-6">
         {items.map((item) => {
           return (
             <CourseCard

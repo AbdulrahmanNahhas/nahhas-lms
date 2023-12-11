@@ -15,13 +15,13 @@ interface SearchPageProps {
 }
 
 const Searchpage = async ({searchParams}: SearchPageProps) => {
-  const {userId} = auth()
-  if(!userId) {
-    return redirect("/");
-  }
+  const {userId} = auth();
+  // if(!userId) {
+  //   return redirect("/");
+  // }
   const categories = await db.category.findMany();
   const courses = await getCourses({
-    userId,
+    userId: userId || "",
     ...searchParams,
   })
 
@@ -31,8 +31,11 @@ const Searchpage = async ({searchParams}: SearchPageProps) => {
         <h1 className="font-bold text-4xl">Looking for a Course?</h1>
         <SearchInput className="w-full max-w-[500px]" />
       </div>
+
       <Categories items={categories} />
+      <div className="px-6 flex items-center justify-center">
       <CoursesList items={courses} />
+      </div>
     </>
   );
 };

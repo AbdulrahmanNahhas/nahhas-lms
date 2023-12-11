@@ -1,6 +1,6 @@
 import { Category, Course } from "@prisma/client";
 
-import getProgress from "./get-progress";
+import getProgress from "@/actions/get-progress";
 import { db } from "@/lib/db";
 
 type CourseWithProgressWithCategory = Course & {

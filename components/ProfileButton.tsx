@@ -4,12 +4,17 @@ import { SignOutButton, UserProfile, useAuth } from "@clerk/nextjs";
 import { Heart } from "lucide-react";
 import {
   DropdownMenu,
+  DropdownMenuCheckboxItem,
   DropdownMenuContent,
   DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuLabel,
+  DropdownMenuPortal,
   DropdownMenuSeparator,
   DropdownMenuShortcut,
+  DropdownMenuSub,
+  DropdownMenuSubContent,
+  DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
@@ -19,9 +24,11 @@ import { MdArrowDropDown } from "react-icons/md";
 import Link from "next/link";
 import { isTeacher } from "@/lib/teacher";
 import { redirect } from "next/navigation";
+import { useTheme } from "next-themes";
 
 const ProfileButton = () => {
   const { userId } = useAuth();
+  const {theme, setTheme} = useTheme();
   const { isLoaded, isSignedIn, user } = useUser();
 
   return (
@@ -90,7 +97,7 @@ const ProfileButton = () => {
           </DropdownMenuGroup>
           <DropdownMenuSeparator />
           <DropdownMenuGroup>
-            {/* <DropdownMenuSub>
+            <DropdownMenuSub>
               <DropdownMenuSubTrigger>Appearance</DropdownMenuSubTrigger>
               <DropdownMenuPortal>
                 <DropdownMenuSubContent>
@@ -114,10 +121,11 @@ const ProfileButton = () => {
                   </DropdownMenuCheckboxItem>
                 </DropdownMenuSubContent>
               </DropdownMenuPortal>
-            </DropdownMenuSub> */}
+            </DropdownMenuSub>
           </DropdownMenuGroup>
+          {/* Links */}
           <DropdownMenuSeparator />
-          <DropdownMenuItem>GitHub</DropdownMenuItem>
+          <DropdownMenuItem>Github</DropdownMenuItem>
           <DropdownMenuItem className="flex justify-between">
             Donate <Heart className="fill-primary py-1 px-0 text-primary" />
           </DropdownMenuItem>

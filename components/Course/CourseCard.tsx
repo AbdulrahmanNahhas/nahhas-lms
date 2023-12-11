@@ -8,6 +8,7 @@ import { getPublicIdFromCloudinaryURL } from "@/lib/formats";
 import { BiMoneyWithdraw } from "react-icons/bi";
 import { Video } from "lucide-react";
 import { Badge } from "../ui/badge";
+import { FaPlay } from "react-icons/fa6";
 
 interface CourseCardProps {
   id: string;
@@ -33,7 +34,6 @@ const CourseCard = ({
   description,
 }: CourseCardProps) => {
   return (
-    // <Dialog>
     <div className="overflow-hidden rounded-2xl border group cursor-pointer w-[300px] relative">
       <div className="w-[300px] h-[195px] overflow-hidden p-3 group-hover:p-[6px] bg-accent/50">
         <CldImage
@@ -46,18 +46,25 @@ const CourseCard = ({
         />
       </div>
       <div className="p-3 pt-0 bg-accent/50 pt-1">
-        <Badge variant={"outline"} className="absolute top-2 left-2 transition-all duration-200 group-hover:top-0 group-hover:left-0  group-hover:rounded-l-none group-hover:rounded-t-none bg-accent group-hover:border-0 group-hover:pl-1 group-hover:px-4">{category}</Badge>
+        <Badge
+          variant={"outline"}
+          className="absolute top-2 left-2 transition-all duration-200 group-hover:top-0 group-hover:left-0  group-hover:rounded-l-none group-hover:rounded-t-none bg-accent group-hover:border-0 group-hover:pl-1 group-hover:px-3 group-hover:py-[4px] group-hover:rounded-br-xl"
+        >
+          {category}
+        </Badge>
         <h1 className="font-semibold text-xl mt-1">{title}</h1>
         <h2 className="text-sm text-foreground/90">By: {author}</h2>
         <div className="flex mt-4 gap-2 items-center">
           <Link
             href={`/courses/${id}`}
             className={cn(
-              buttonVariants({ variant: "secondary", size: "default" }),
+              buttonVariants({ variant: "secondary", size: progress === 100 ? "icon" : "default" }),
               "rounded-xl bg-accent hover:bg-accent/75 hover:text-muted-foreground"
             )}
           >
-            {progress !== null ? <>Continue</> : <>View Info</>}
+            {progress !== null ? (
+              progress === 100 ? <FaPlay /> :"Continue"
+            ) : "View Info"}
           </Link>
           {progress !== null ? (
             <>
@@ -84,18 +91,6 @@ const CourseCard = ({
         </div>
       </div>
     </div>
-    // <DialogContent className="p-0 max-w-none h-[80vh] w-[80vw] overflow-hidden">
-    //   <iframe
-    //     width="560"
-    //     height="315"
-    //     src="https://www.youtube-nocookie.com/embed/bNyUyrR0PHo?si=nyO0n0GUNuHKQdz0"
-    //     title={title}
-    //     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-    //     allowFullScreen
-    //     className="w-full h-full"
-    //   ></iframe>
-    // </DialogContent>
-    // </Dialog>
   );
 };
 
