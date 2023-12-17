@@ -35,7 +35,7 @@ const ProfileButton = () => {
     <Dialog>
       <DropdownMenu>
         <DropdownMenuTrigger className="outline-none w-full group">
-          <div className="flex items-center justify-start gap-2 p-2 hover:bg-accent px-3 rounded-xl">
+          <div className="flex items-center justify-start gap-2 px-4 py-3 hover:bg-accent">
             {!isLoaded || !isSignedIn ? (
               <h1 className="text-center py-2 w-full">Loading Acount...</h1>
             ) : (
@@ -57,13 +57,18 @@ const ProfileButton = () => {
                     className="h-10 w-10 rounded-lg"
                   />
                 )}
+                <div className="flex items-center justify-between w-full">
+
                 <div className="hidden sm:flex flex-col items-start justify-center gap-0">
-                  <p className=" font-semibold flex items-center">
+                  <p className=" font-semibold flex items-center text-sm">
                     {user.firstName?.charAt(0)?.toUpperCase()}
                     {user.firstName?.slice(1)}
-                    <MdArrowDropDown className="w-6 h-6 duration-200 group-hover:rotate-180" />
                   </p>
-                  <p className="text-xs text-muted-foreground/80">My Profile</p>
+                  <p className="text-xs text-[11px] mt-0 leading-[10px] text-muted-foreground/80">
+                    {user.emailAddresses[0].emailAddress}
+                  </p>
+                </div>
+                    <MdArrowDropDown className="w-6 h-6 duration-200 -rotate-90 opacity-50 group-hover:opacity-100" />
                 </div>
               </>
             )}
@@ -71,7 +76,7 @@ const ProfileButton = () => {
         </DropdownMenuTrigger>
         <DropdownMenuContent
           side="top"
-          className="w-56 lg:w-64 relative right-2 sm:-right-4 sm:w-[200px]"
+          className="w-[300px]  relative right-2 sm:-right-4 sm:w-[200px]"
         >
           <DropdownMenuLabel>My Settings</DropdownMenuLabel>
           <DropdownMenuSeparator />

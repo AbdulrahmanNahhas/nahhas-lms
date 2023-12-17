@@ -1,6 +1,6 @@
 "use client";
 
-import { BarChart, Compass, List, Plus } from "lucide-react";
+import { ArrowLeft, BarChart, Compass, List, Plus } from "lucide-react";
 import SidebarItem from "./SidebarItem";
 import { usePathname } from "next/navigation";
 import { MdOutlineLeaderboard } from "react-icons/md";
@@ -32,13 +32,18 @@ const guestRoutes = [
 ]
 const teacherRoutes = [
   {
+    icon: ArrowLeft,
+    label: "Exit",
+    href: "/dashboard"
+  },
+  {
     icon: Plus,
     label: "Create a Course",
     href: "/teacher/create"
   },
   {
     icon: List,
-    label: "Courses",
+    label: "My Courses",
     href: "/teacher/courses"
   },
   {
@@ -50,13 +55,11 @@ const teacherRoutes = [
 
 const SidebarRoutes = () => {
   const pathname = usePathname();
-  
   const isTecacherPage = pathname?.includes("/teacher");
-  
   const routes = isTecacherPage ? teacherRoutes : guestRoutes;
 
   return ( 
-    <div className={cn("flex flex-col w-full gap-2 md:gap-3 p-6 pt-0")}>
+    <div className={cn("flex flex-col w-full py-6")}>
       {routes.map((route, index) => (
         <SidebarItem
           key={index}
