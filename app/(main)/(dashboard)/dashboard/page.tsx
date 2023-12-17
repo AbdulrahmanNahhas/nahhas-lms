@@ -6,13 +6,6 @@ import { ArrowRight, CheckCircle, Clock, Diamond, Star } from "lucide-react";
 import Image from "next/image";
 import { redirect } from "next/navigation";
 import React from "react";
-import { FaCheck } from "react-icons/fa6";
-import {
-  GiAlarmClock,
-  GiDiamonds,
-  GiExtraTime,
-  GiFlamer,
-} from "react-icons/gi";
 import { InfoCard } from "./_components/InfoCard";
 
 const Dashboard = async () => {

@@ -1,15 +1,8 @@
-"use client";
-
-import { buttonVariants } from "@/components/ui/button";
 import SidebarRoutes from "./SidebarRoutes";
-import { useAuth } from "@clerk/nextjs";
 import ProfileButton from "@/components/ProfileButton";
-import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 
 const Sidebar = () => {
-  const { userId } = useAuth();
-
   return (
     <div className="h-full flex flex-col border-r overflow-y-auto bg-secondary shadow-sm w-[300px]">
       {/* Logo */}
@@ -23,19 +16,16 @@ const Sidebar = () => {
             <span className="text-primary">LMS</span>
           </div>
         </h1>
-        <Badge variant="secondary" className="bg-accent hover:bg-accent cursor-default rounded-[6px] p-1 h-min py-0 tracking-widest font-medium">
-          v1.0.1
+        <Badge
+          variant="secondary"
+          className="bg-accent hover:bg-accent cursor-default rounded-[6px] p-1 h-min py-0 tracking-widest font-medium"
+        >
+          v1.0.2
         </Badge>
       </div>
       <SidebarRoutes />
       <div className="flex flex-col justify-center items-center mt-auto border-t">
-        {userId ? (
-          <ProfileButton />
-        ) : (
-          <Link href="/sign-in" className={buttonVariants()}>
-            Sign In
-          </Link>
-        )}
+        <ProfileButton />
       </div>
     </div>
   );

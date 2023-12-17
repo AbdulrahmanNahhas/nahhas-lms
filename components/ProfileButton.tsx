@@ -1,162 +1,51 @@
-"use client";
-
-import { SignOutButton, UserProfile, useAuth } from "@clerk/nextjs";
-import { Heart } from "lucide-react";
-import {
-  DropdownMenu,
-  DropdownMenuCheckboxItem,
-  DropdownMenuContent,
-  DropdownMenuGroup,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuPortal,
-  DropdownMenuSeparator,
-  DropdownMenuShortcut,
-  DropdownMenuSub,
-  DropdownMenuSubContent,
-  DropdownMenuSubTrigger,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
-import { useUser } from "@clerk/nextjs";
+import { auth, clerkClient } from "@clerk/nextjs";
 import Image from "next/image";
 import { MdArrowDropDown } from "react-icons/md";
 import Link from "next/link";
-import { isTeacher } from "@/lib/teacher";
 import { redirect } from "next/navigation";
-import { useTheme } from "next-themes";
 
-const ProfileButton = () => {
-  const { userId } = useAuth();
-  const {theme, setTheme} = useTheme();
-  const { isLoaded, isSignedIn, user } = useUser();
+const ProfileButton = async () => {
+  const { userId } = auth();
+  if (!userId) {
+    return redirect("/");
+  }
+  const user = await clerkClient.users.getUser(userId);
 
   return (
-    <Dialog>
-      <DropdownMenu>
-        <DropdownMenuTrigger className="outline-none w-full group">
-          <div className="flex items-center justify-start gap-2 px-4 py-3 hover:bg-accent">
-            {!isLoaded || !isSignedIn ? (
-              <h1 className="text-center py-2 w-full">Loading Acount...</h1>
-            ) : (
-              <>
-                {user.hasImage ? (
-                  <Image
-                    height={140}
-                    width={140}
-                    src={user.imageUrl}
-                    alt="logo"
-                    className="h-10 w-10 rounded-sm group-hover:rounded-3xl !transition-all !duration-300"
-                  />
-                ) : (
-                  <Image
-                    height={140}
-                    width={140}
-                    src={`https://ui-avatars.com/api/?name=${user.firstName}+${user.lastName}&background=random`}
-                    alt="logo"
-                    className="h-10 w-10 rounded-lg"
-                  />
-                )}
-                <div className="flex items-center justify-between w-full">
-
-                <div className="hidden sm:flex flex-col items-start justify-center gap-0">
-                  <p className=" font-semibold flex items-center text-sm">
-                    {user.firstName?.charAt(0)?.toUpperCase()}
-                    {user.firstName?.slice(1)}
-                  </p>
-                  <p className="text-xs text-[11px] mt-0 leading-[10px] text-muted-foreground/80">
-                    {user.emailAddresses[0].emailAddress}
-                  </p>
-                </div>
-                    <MdArrowDropDown className="w-6 h-6 duration-200 -rotate-90 opacity-50 group-hover:opacity-100" />
-                </div>
-              </>
-            )}
-          </div>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent
-          side="top"
-          className="w-[300px]  relative right-2 sm:-right-4 sm:w-[200px]"
-        >
-          <DropdownMenuLabel>My Settings</DropdownMenuLabel>
-          <DropdownMenuSeparator />
-          <DropdownMenuGroup>
-            {isTeacher(userId) && (
-              <DropdownMenuItem asChild>
-                <Link href="/teacher/courses" className="w-full">
-                  Teacher Mode
-                </Link>
-              </DropdownMenuItem>
-              )}
-            <DropdownMenuItem asChild>
-              <DialogTrigger className="w-full">Profile</DialogTrigger>
-            </DropdownMenuItem>
-            <DropdownMenuItem disabled>
-              Billing
-              <DropdownMenuShortcut>⌘B</DropdownMenuShortcut>
-            </DropdownMenuItem>
-            <DropdownMenuItem disabled>
-              Settings
-              <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
-            </DropdownMenuItem>
-          </DropdownMenuGroup>
-          <DropdownMenuSeparator />
-          <DropdownMenuGroup>
-            <DropdownMenuSub>
-              <DropdownMenuSubTrigger>Appearance</DropdownMenuSubTrigger>
-              <DropdownMenuPortal>
-                <DropdownMenuSubContent>
-                  <DropdownMenuCheckboxItem
-                    checked={theme === "light"}
-                    onCheckedChange={() => setTheme("light")}
-                  >
-                    Light
-                  </DropdownMenuCheckboxItem>
-                  <DropdownMenuCheckboxItem
-                    checked={theme === "dark"}
-                    onCheckedChange={() => setTheme("dark")}
-                  >
-                    Dark
-                  </DropdownMenuCheckboxItem>
-                  <DropdownMenuCheckboxItem
-                    checked={theme === "system"}
-                    onCheckedChange={() => setTheme("system")}
-                  >
-                    System
-                  </DropdownMenuCheckboxItem>
-                </DropdownMenuSubContent>
-              </DropdownMenuPortal>
-            </DropdownMenuSub>
-          </DropdownMenuGroup>
-          {/* Links */}
-          <DropdownMenuSeparator />
-          <DropdownMenuItem>Github</DropdownMenuItem>
-          <DropdownMenuItem className="flex justify-between">
-            Donate <Heart className="fill-primary py-1 px-0 text-primary" />
-          </DropdownMenuItem>
-          <DropdownMenuSeparator />
-          <DropdownMenuItem asChild className="w-full">
-            <SignOutButton signOutCallback={() => redirect("/")} />
-          </DropdownMenuItem>
-        </DropdownMenuContent>
-      </DropdownMenu>
-      <DialogContent className="h-full lg:h-[95vh] w-full !rounded-none lg:!rounded-xl max-w-none lg:max-w-[1000px] flex items-center justify-center">
-        {/* <DialogTitle className="md:text-2xl font-bold">Profile</DialogTitle>
-        <DialogDescription className="flex items-center gap-2">
-          Click On your Profile Image {"->"}
-          <UserButton />
-        </DialogDescription>
-        <DialogFooter>
-          Sorry We have a problem, so you need to open your profile from the
-          profile image here (up).
-        </DialogFooter> */}
-        {/* <div className="w-full fixed h-screen overflow-hidden flex justify-center items-center top-0 left-0 bg-[#00000068] z-[9999]"> */}
-        <div className="w-min relative max-h-[90vh] overflow-y-scroll bg-background rounded-xl shadow">
-          <UserProfile />
+    <Link
+      href={"/settings"}
+      className="flex items-center justify-start gap-2 px-4 py-3 hover:bg-accent group w-full"
+    >
+      {user.hasImage ? (
+        <Image
+          height={140}
+          width={140}
+          src={user.imageUrl}
+          alt="logo"
+          className="h-10 w-10 rounded-sm group-hover:rounded-3xl !transition-all !duration-300"
+        />
+      ) : (
+        <Image
+          height={140}
+          width={140}
+          src={`https://ui-avatars.com/api/?name=${user.firstName}+${user.lastName}&background=random`}
+          alt="logo"
+          className="h-10 w-10 rounded-lg"
+        />
+      )}
+      <div className="flex items-center justify-between w-full">
+        <div className="hidden sm:flex flex-col items-start justify-center gap-0">
+          <p className=" font-semibold flex items-center text-sm">
+            {user.firstName?.charAt(0)?.toUpperCase()}
+            {user.firstName?.slice(1)}
+          </p>
+          <p className="text-xs text-[12px] mt-0 leading-[12px] text-muted-foreground/80">
+            {user.emailAddresses[0].emailAddress}
+          </p>
         </div>
-        {/* </div> */}
-      </DialogContent>
-    </Dialog>
+        <MdArrowDropDown className="w-6 h-6 duration-200 -rotate-90 opacity-50 group-hover:opacity-100" />
+      </div>
+    </Link>
   );
 };
 
