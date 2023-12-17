@@ -14,7 +14,7 @@ const ProfileButton = async () => {
   return (
     <Link
       href={"/settings"}
-      className="flex items-center justify-start gap-2 px-4 py-3 hover:bg-accent group w-full"
+      className="flex items-center justify-start sm:gap-2 sm:px-2 lg:px-4 sm:py-1 lg:py-3 sm:hover:bg-accent group w-full rounded-md lg:rounded-none"
     >
       {user.hasImage ? (
         <Image
@@ -43,7 +43,7 @@ const ProfileButton = async () => {
             {user.emailAddresses[0].emailAddress}
           </p>
         </div>
-        <MdArrowDropDown className="w-6 h-6 duration-200 -rotate-90 opacity-50 group-hover:opacity-100" />
+        <MdArrowDropDown className="w-6 h-6 duration-200 -rotate-90 opacity-50 group-hover:opacity-100 hidden lg:block" />
       </div>
     </Link>
   );

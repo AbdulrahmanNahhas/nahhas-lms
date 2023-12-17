@@ -11,7 +11,7 @@ const NavbarRoutes = () => {
   return (
     <div className="flex gap-x-2 ml-auto items-center justify-end w-full">
       <NavbarRoutesClient />
-      <div className="flex gap-x-2 items-center justify-center">
+      <div className="flex gap-x-2 items-center justify-center flex-row-reverse sm:flex-row">
         {userId ? (
           <ProfileButton />
         ) : (

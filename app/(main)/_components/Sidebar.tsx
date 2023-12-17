@@ -18,13 +18,13 @@ const Sidebar = () => {
         </h1>
         <Badge
           variant="secondary"
-          className="bg-accent hover:bg-accent cursor-default rounded-[6px] p-1 h-min py-0 tracking-widest font-medium"
+          className="bg-accent hover:bg-accent cursor-default rounded-[6px] p-1 h-min py-0 tracking-widest font-medium hidden lg:block"
         >
-          v1.0.2
+          v1.0.3
         </Badge>
       </div>
       <SidebarRoutes />
-      <div className="flex flex-col justify-center items-center mt-auto border-t">
+      <div className="hidden sm:flex flex-col justify-center items-center mt-auto border-t">
         <ProfileButton />
       </div>
     </div>
