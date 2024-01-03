@@ -14,6 +14,10 @@ const page = () => {
   const { userId } = useAuth();
   const { theme, setTheme } = useTheme();
 
+  if(!userId) {
+    return redirect("/");
+  }
+
   return (
     <div className="container py-10 lg:py-22 max-w-[770px]">
       <div className="flex flex-col mb-6 md:gap-1 items-center sm:items-start">
