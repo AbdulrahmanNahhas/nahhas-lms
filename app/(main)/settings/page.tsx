@@ -107,7 +107,7 @@ const page = () => {
       <div className="pb-10">
         <h3 className="text-lg font-medium">Links</h3>
         <p className="text-sm text-muted-foreground">
-          I don't know what to write here :D
+          I don&apos;t know what to write here :D
         </p>
         <div className="flex pt-4 gap-4 items-center flex-wrap">
           <Button variant={"outline"}>Github</Button>
