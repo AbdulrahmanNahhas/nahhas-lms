@@ -1,8 +1,11 @@
 import { db } from '@/lib/db'
 import { redirect } from 'next/navigation'
-import React from 'react'
 
 const page = async ({params}: {params: {courseId: string}}) => {
+  if (!params.courseId) {
+    return redirect("/")
+  }
+
   const course = await db.course.findUnique({
     where: {
       id: params.courseId

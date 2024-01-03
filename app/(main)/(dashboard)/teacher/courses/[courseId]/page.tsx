@@ -1,10 +1,9 @@
 import { db } from "@/lib/db";
-import { auth } from "@clerk/nextjs";
+import { currentUser } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
 import { FaListCheck } from "react-icons/fa6";
 import { BiSolidCustomize } from "react-icons/bi";
 import { BsCurrencyDollar } from "react-icons/bs";
-import { FaFileInvoice } from "react-icons/fa";
 import TitleForm from "./_components/TitleForm";
 import DescriptionForm from "./_components/DescriptionForm";
 import ImageForm from "./_components/ImageForm";
@@ -15,9 +14,9 @@ import { Banner } from "@/components/ui/banner";
 import Actions from "./_components/Actions";
 
 const Course = async ({ params }: { params: { courseId: string } }) => {
-  const { userId } = auth();
-
-  if (!userId) {
+  const user = await currentUser();
+ 
+  if (!user?.id) {
     console.log("You aren't signed in to your account.");
     return redirect("/teacher/courses");
   }
@@ -25,7 +24,7 @@ const Course = async ({ params }: { params: { courseId: string } }) => {
   const course = await db.course.findUnique({
     where: {
       id: courseId,
-      userId: userId,
+      userId: user.id,
     },
     include: {
       chapters: {

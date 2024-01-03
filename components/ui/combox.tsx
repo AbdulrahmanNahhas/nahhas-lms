@@ -44,9 +44,9 @@ const IconMap: Record<string, IconType> = {
   Design: FaPaintbrush,
 };
 
-const Icon = ({ Icon, className }: { Icon: IconType; className?: string }) => {
-  return <Icon />;
-};
+// const RenderIcon = ({ Icon, className }: { Icon: IconType; className?: string }) => {
+//   return <Icon />;
+// };
 
 export const Combobox = ({
   options,
@@ -86,13 +86,13 @@ export const Combobox = ({
                 }}
                 className={cn("flex gap-2 items-center", value === option.value ? "opacity-100" : "opacity-75")}
               >
-                <Icon
+                {/* <RenderIcon
                   Icon={IconMap[option.label]}
                   className={cn(
                     "!mr-2 h-4 w-4",
                     value === option.value ? "opacity-100" : "opacity-10"
                   )}
-                />
+                /> */}
                 {option.label}
               </CommandItem>
             ))}
