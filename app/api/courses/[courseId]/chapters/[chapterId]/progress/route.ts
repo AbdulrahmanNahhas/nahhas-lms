@@ -1,5 +1,5 @@
 import { db } from "@/lib/db";
-import { auth } from "@clerk/nextjs";
+import { auth, clerkClient } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
 
 export async function PUT(req: Request, { params }:{ params: { courseId: string, chapterId: string }}) {
@@ -10,6 +10,9 @@ export async function PUT(req: Request, { params }:{ params: { courseId: string,
     if (!userId) {
       return new NextResponse("Unauthorized", { status: 401 })
     }
+
+    const user = await clerkClient.users.getUser(userId);
+    const xp = user.publicMetadata.xp as number || 0;
 
     const userProgress = await db.userProgress.upsert({
       where: {
@@ -27,6 +30,20 @@ export async function PUT(req: Request, { params }:{ params: { courseId: string,
         isCompleted
       }
     })
+
+    if (isCompleted === true) {
+      await clerkClient.users.updateUserMetadata(userId, {
+        publicMetadata: {
+          xp: `${xp+10}`
+        }
+      })
+    } else if(isCompleted === false) {
+      await clerkClient.users.updateUserMetadata(userId, {
+        publicMetadata: {
+          xp: xp-10
+        }
+      })
+    }
 
     return NextResponse.json(userProgress);
   } catch (error) {

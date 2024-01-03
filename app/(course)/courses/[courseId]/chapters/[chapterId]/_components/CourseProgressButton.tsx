@@ -24,14 +24,14 @@ const CourseProgressButton = ({
   const router = useRouter();
   const confetti = useConfettiStore();
   const [isLoading, setIsLoading] = useState(false)
-  
+
   const onClick = async () => {
     try {
       setIsLoading(true)
 
       const promise = async () => {
         await axios.put(`/api/courses/${courseId}/chapters/${chapterId}/progress`, {
-          isCompleted: !isCompleted
+          isCompleted: !isCompleted,
         })
       
         if(!isCompleted && !nextChapterId) {

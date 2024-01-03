@@ -1,7 +1,7 @@
 import { LucideIcon } from "lucide-react";
 
 interface InfoCardProps {
-  numberOfItems: number;
+  numberOfItems: any;
   nameOfItems: string;
   label: string;
   icon: LucideIcon;
