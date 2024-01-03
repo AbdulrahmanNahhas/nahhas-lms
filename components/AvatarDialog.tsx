@@ -37,7 +37,7 @@ const AvatarDialog = ({ xp, image }: AvatarDialogProps) => {
       });
       toast.success(("Avatar Decoration Changed!!"));
       setOpen(false);
-      router.refresh();
+      return router.push("/dashboard");
     } catch (error) {
       setIsLoading(false)
       toast.error(("something went wrong"));
@@ -47,7 +47,7 @@ const AvatarDialog = ({ xp, image }: AvatarDialogProps) => {
   };
 
   return (
-    <Dialog open={open}>
+    <Dialog open={open} onOpenChange={() => setOpen(!open)}>
       <DialogTrigger asChild onClick={() => setOpen(true)}>
         <div className="bg-accent border rounded-full absolute bottom-2 right-2 cursor-pointer z-50">
           <Edit className="p-1" />

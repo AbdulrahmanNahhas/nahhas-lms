@@ -20,7 +20,7 @@ const Sidebar = () => {
           variant="secondary"
           className="bg-accent hover:bg-accent cursor-default rounded-[6px] p-1 h-min py-0 tracking-widest font-medium hidden lg:block"
         >
-          v1.0.3
+          v1.1.0
         </Badge>
       </div>
       <SidebarRoutes />
