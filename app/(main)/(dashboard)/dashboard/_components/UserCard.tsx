@@ -1,8 +1,10 @@
 import { auth, clerkClient } from "@clerk/nextjs";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Edit } from "lucide-react";
 import { redirect } from "next/navigation";
+import { ChangeAvatarDialog } from "@/components/ChangeAvatar";
+import { avatarDecorations } from "@/config/avatar-decorations";
 
 const UserCard = async () => {
   const { userId } = auth();
@@ -11,6 +13,7 @@ const UserCard = async () => {
   }
   const user = await clerkClient.users.getUser(userId);
 
+  // XP
   const xp = user.publicMetadata.xp || 0;
   function getHundreds(number: any) {
     return Math.floor(number / 100) * 100;
@@ -19,11 +22,25 @@ const UserCard = async () => {
     return Math.round((currentValue / totalValue) * 100);
   }
 
+  // Image
+  const image = user.publicMetadata.image as string || "";
+  const [groupName, indexString] = image.split("-");
+  const index = Number(indexString);
+  const matchingDecoration = avatarDecorations.find(
+    (decoration) => decoration.title === groupName
+  );
+  let imageURL = ""
+  if (matchingDecoration) {
+    imageURL = matchingDecoration.images[index];
+  }
+
+
   return (
     <div className="bg-secondary border rounded-3xl gap-6 xl:gap-0 flex flex-col xl:flex-row p-6">
       <div className="flex gap-6 items-center flex-1">
         {user.hasImage ? (
           <div className="relative h-16 sm:h-24 lg:h-28 w-16 sm:w-24 lg:w-28 aspect-square">
+            <ChangeAvatarDialog />
             <Image
               height={300}
               width={300}
@@ -31,11 +48,9 @@ const UserCard = async () => {
               alt="logo"
               className="p-2 rounded-full w-full h-full"
             />
-            {/* <img src="https://ia902702.us.archive.org/24/items/discord-profile-deco-archive/Cherry%20Blossom%20Dark%20Pink.png" alt="border"  className="absolute top-0 left-0" /> */}
-            {/* <img src="https://archive.org/download/discord-profile-deco-archive/Forest.png" alt="border"  className="absolute top-0 left-0" /> */}
-            {/* <img src="https://archive.org/download/discord-profile-deco-archive/Frog%20Angry.png" alt="border"  className="absolute top-0 left-0" /> */}
-            {/* <img src="https://archive.org/download/discord-profile-deco-archive/Mushroom%20Green.png" alt="border"  className="absolute top-0 left-0" /> */}
-            <img src="https://archive.org/download/discord-profile-deco-archive/Smoke%20Clouds%20%28Blue%20Border%29.png" alt="border"  className="absolute top-0 left-0" />
+            {imageURL !== "" && image !== "" && (
+              <img src={imageURL} alt="border"  className="absolute top-0 left-0" />
+            )}
           </div>
         ) : (
           <Image
