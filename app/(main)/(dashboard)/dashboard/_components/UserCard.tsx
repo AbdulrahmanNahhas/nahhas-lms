@@ -14,11 +14,14 @@ const UserCard = async () => {
   const user = await clerkClient.users.getUser(userId);
 
   // XP
-  const xp = user.publicMetadata.xp || 0;
-  function getHundreds(number: any) {
+  const xp = user.publicMetadata.xp as number || 0;
+  function getHundreds(number: number) {
     return Math.floor(number / 100) * 100;
   }
-  function calculateProgress(currentValue: any, totalValue: any) {
+  function removeHundreds(number: number): number {
+    return number % 100;
+  }
+  function calculateProgress(currentValue: number, totalValue: number) {
     return Math.round((currentValue / totalValue) * 100);
   }
 
@@ -72,14 +75,14 @@ const UserCard = async () => {
               <div
                 className="h-2 rounded-full bg-primary"
                 style={{
-                  width: `${calculateProgress(50, getHundreds(xp) + 100)}%`,
+                  width: `${calculateProgress(removeHundreds(xp),100)}%`,
                 }}
               ></div>
             </div>
             <div className="flex justify-between items-center">
               <button>{`${xp} `}XP</button>
               <span className="text-muted-foreground">
-                {getHundreds(xp) + 100} XP
+                {getHundreds(xp)+100} XP
               </span>
             </div>
           </div>
