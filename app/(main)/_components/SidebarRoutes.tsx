@@ -59,7 +59,7 @@ const SidebarRoutes = () => {
   const routes = isTecacherPage ? teacherRoutes : guestRoutes;
 
   return ( 
-    <div className={cn("flex flex-col w-full py-6")}>
+    <div className={cn("flex flex-col w-full py-6 gap-2")}>
       {routes.map((route, index) => (
         <SidebarItem
           key={index}

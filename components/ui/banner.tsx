@@ -6,7 +6,7 @@ import { IoIosCheckmarkCircleOutline } from "react-icons/io";
 import { IoWarningOutline } from "react-icons/io5";
 
 const bannerVariants = cva(
-  "text-center p-4 md:p-6 text-sm flex items-center w-full",
+  "text-center p-2 md:p-3 text-sm flex items-center w-full rounded-full mb-2",
   {
     variants: {
       variant: {
@@ -47,8 +47,9 @@ export const Banner = ({ label, variant }: BannerProps) => {
     <div
       className={cn(
         bannerVariants({ variant }),
-        "w-[calc(100%)] flex items-center border-0"
+        "w-full flex items-center border-0"
       )}
+
     >
       <Icon className="h-5 w-5 mr-2" />
       {label}

@@ -1,7 +1,7 @@
 import { getDashboardCourses } from "@/actions/get-dashboard-courses";
 import CoursesList from "@/components/Course/CoursesList";
 import { auth, clerkClient } from "@clerk/nextjs";
-import {  CheckCircle, Clock,  Star } from "lucide-react";
+import { CheckCircle, Clock, Star } from "lucide-react";
 import { redirect } from "next/navigation";
 import React from "react";
 import { InfoCard } from "./_components/InfoCard";
@@ -17,7 +17,7 @@ const Dashboard = async () => {
   const { completedCourses, coursesInProgress } = await getDashboardCourses(
     userId
   );
-  const xp= user.publicMetadata.xp || 0;
+  const xp = user.publicMetadata.xp || 0;
 
   return (
     <div className="p-6 space-y-4 container">
@@ -35,29 +35,32 @@ const Dashboard = async () => {
           })}
         </p>
       </div>
-      <UserCard />
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        <InfoCard
-          icon={Clock}
-          label="In Progress"
-          numberOfItems={coursesInProgress.length}
-          nameOfItems={"Courses"}
-        />
-        <InfoCard
-          icon={CheckCircle}
-          label="Completed"
-          numberOfItems={completedCourses.length}
-          nameOfItems={"Courses"}
-        />
-        <InfoCard
-          icon={Star}
-          label="Points"
-          numberOfItems={xp}
-          nameOfItems={"XP"}
-        />
+      <div className="bg-secondary border rounded-3xl overflow-hidden">
+        <UserCard />
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 p-4">
+          <InfoCard
+            icon={Clock}
+            label="In Progress"
+            numberOfItems={coursesInProgress.length}
+            nameOfItems={"Courses"}
+          />
+          <InfoCard
+            icon={CheckCircle}
+            label="Completed"
+            numberOfItems={completedCourses.length}
+            nameOfItems={"Courses"}
+          />
+          <InfoCard
+            icon={Star}
+            label="Points"
+            numberOfItems={xp}
+            nameOfItems={"XP"}
+          />
+        </div>
       </div>
-      <hr />
-      <CoursesList items={[...coursesInProgress, ...completedCourses]} />
+      <div className="bg-secondary border rounded-3xl overflow-hidden p-5">
+        <CoursesList items={[...coursesInProgress, ...completedCourses]} />
+      </div>
     </div>
   );
 };

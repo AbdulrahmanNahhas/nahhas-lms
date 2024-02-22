@@ -18,7 +18,7 @@ const CourseMobileSidebar = ({course, progressCount}: CourseMobileSidebarProps) 
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <Button variant={"outline"} size={"icon"} className="flex lg:hidden mr-2">
+        <Button variant={"outline"} size={"icon"} className="flex lg:hidden mr-2 bg-secondary">
           <Menu />
         </Button>
       </SheetTrigger>

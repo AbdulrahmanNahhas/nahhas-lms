@@ -28,13 +28,9 @@ const Searchpage = async ({searchParams}: SearchPageProps) => {
 
   return (
     <>
-      <div className="p-6 flex flex-col gap-4 items-center justify-center mt-10 mb-6">
-        <h1 className="font-bold text-4xl">Looking for a Course?</h1>
-        <SearchInput className="w-full max-w-[500px]" />
-      </div>
 
       <Categories items={categories} />
-      <div className="px-6 flex items-center justify-center">
+      <div className="px-6 flex items-start flex-wrap gap-6 justify-start overflow-y-scroll bg-secondary mx-3 md:mx-0 py-6 rounded-3xl md:h-[calc(100vh-170px)] md:rounded-none md:rounded-bl-3xl mt-5 md:mt-1 md:rounded-tl-xl">
       <CoursesList items={courses} />
       </div>
     </>

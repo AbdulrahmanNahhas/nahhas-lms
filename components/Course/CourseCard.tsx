@@ -34,8 +34,8 @@ const CourseCard = ({
   description,
 }: CourseCardProps) => {
   return (
-    <div className="overflow-hidden rounded-2xl border group cursor-pointer w-[300px] relative">
-      <div className="w-[300px] h-[195px] overflow-hidden p-3 group-hover:p-[6px] bg-accent/50">
+    <div className="overflow-hidden rounded-2xl border border-border/50 group w-[300px] relative group">
+      <div className="w-[300px] h-[195px] overflow-hidden p-3 group-hover:p-[6px] !duration-300 bg-accent/25 group-hover:bg-accent/50">
         <CldImage
           aspectRatio="video"
           width={1600}
@@ -45,7 +45,7 @@ const CourseCard = ({
           className="w-full h-full object-cover duration-200 group-hover:scale-[1.12] rounded-xl group-hover:rounded-none"
         />
       </div>
-      <div className="p-3 pt-0 bg-accent/50 pt-1">
+      <div className="p-3 pt-0 !duration-300 bg-accent/25 group-hover:bg-accent/50 pt-1">
         <Badge
           variant={"outline"}
           className="absolute top-2 left-2 transition-all duration-200 group-hover:top-0 group-hover:left-0  group-hover:rounded-l-none group-hover:rounded-t-none bg-accent group-hover:border-0 group-hover:pl-1 group-hover:px-3 group-hover:py-[4px] group-hover:rounded-br-xl"

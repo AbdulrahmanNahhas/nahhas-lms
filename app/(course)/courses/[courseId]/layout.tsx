@@ -49,13 +49,13 @@ const layout = async ({
 
   return (
     <div className="h-full">
-      <div className="h-[80px] lg:pl-80 fixed inset-y-0 w-full z-50">
+      <div className="h-[80px] lg:pl-[350px] inset-y-0 w-full z-50">
         <CourseNavbar course={course} progressCount={progressCount} />
       </div>
-      <div className="hidden lg:flex h-full w-80 inset-y-0 z-50 fixed top-0 left-0">
+      <div className="hidden lg:flex h-full w-[350px] inset-y-0 z-50 fixed top-0 left-0">
         <CourseSidebar course={course} progressCount={progressCount} />
       </div>
-      <main className="lg:pl-80 h-full pt-[80px]">{children}</main>
+      <main className="lg:pl-[350px] h-full">{children}</main>
     </div>
   );
 };

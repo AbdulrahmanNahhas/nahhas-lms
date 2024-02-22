@@ -34,7 +34,7 @@ export async function PUT(req: Request, { params }:{ params: { courseId: string,
     if (isCompleted === true) {
       await clerkClient.users.updateUserMetadata(userId, {
         publicMetadata: {
-          xp: `${xp+10}`
+          xp: xp+10
         }
       })
     } else if(isCompleted === false) {

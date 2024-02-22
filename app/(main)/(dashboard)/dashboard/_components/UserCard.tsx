@@ -39,11 +39,11 @@ const UserCard = async () => {
 
 
   return (
-    <div className="bg-secondary border rounded-3xl gap-6 xl:gap-0 flex flex-col xl:flex-row p-6">
+    <div className="bg-secondary border-b gap-6 xl:gap-0 flex flex-col xl:flex-row p-6">
       <div className="flex gap-6 items-center flex-1">
         {user.hasImage ? (
           <div className="relative h-16 sm:h-24 lg:h-28 w-16 sm:w-24 lg:w-28 aspect-square">
-            <ChangeAvatarDialog />
+            {/* <ChangeAvatarDialog /> */}
             <Image
               height={300}
               width={300}
@@ -51,9 +51,9 @@ const UserCard = async () => {
               alt="logo"
               className="p-2 rounded-full w-full h-full"
             />
-            {imageURL !== "" && image !== "" && (
+            {/* {imageURL !== "" && image !== "" && (
               <img src={imageURL} alt="border"  className="absolute top-0 left-0" />
-            )}
+            )} */}
           </div>
         ) : (
           <Image

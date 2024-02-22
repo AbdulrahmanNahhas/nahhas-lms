@@ -23,7 +23,7 @@ const SidebarItem = ({ icon: Icon, label, href }: SidebarItemProps) => {
       variant={"ghost"}
       size={"lg"}
       className={cn(
-        "flex items-center justify-start gap-x-3 px-4 py-[26px] text-muted-foreground text-sm font-[500] transition-all duration-300 rounded-none hover:scale-1 group",
+        "flex items-center justify-start gap-x-3 px-4 py-[26px] text-muted-foreground text-sm mx-3 !rounded-xl overflow-hidden font-[500] transition-all duration-300 rounded-none hover:scale-1 group",
         isActive
           ? "text-primary opacity-100 hover:bg-primary/10 hover:text-primary"
           : "",

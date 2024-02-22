@@ -7,7 +7,9 @@ import {
 } from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
 import { usePathname, useRouter } from "next/navigation";
+import { BsPauseCircle } from "react-icons/bs";
 import { FaCircleCheck, FaCirclePlay, FaLock, FaPause } from "react-icons/fa6";
+import { RiFolderVideoLine } from "react-icons/ri";
 
 interface CourseSidebarItemProps {
   id: string;
@@ -28,7 +30,13 @@ const CourseSidebarItem = ({
   const router = useRouter();
 
   const isActive = pathname?.includes(id);
-  const Icon = isLocked ? FaLock : (isCompleted ? FaCircleCheck : (isActive ? FaPause : FaCirclePlay));
+  const Icon = isLocked
+    ? FaLock
+    : isCompleted
+    ? FaCircleCheck
+    : isActive
+    ? BsPauseCircle
+    : RiFolderVideoLine;
 
   const onClick = () => {
     router.push(`/courses/${courseId}/chapters/${id}`);
@@ -36,17 +44,17 @@ const CourseSidebarItem = ({
   return (
     <button
       onClick={onClick}
+      disabled={isLocked}
       className={cn(
-        "text-sm flex gap-3 text-break py-3 px-4 hover:bg-accent items-center cursor-pointer w-full justify-start text-start",
+        "flex gap-3 hover:bg-accent items-center cursor-pointer justify-start w-[calc(100%-24px)] mx-3 p-2 rounded-xl",
         isActive &&
           "bg-primary/10 text-primary hover:bg-primary/20 hover:text-primary",
         isLocked && "opacity-50 cursor-not-allowed",
         isCompleted && !isActive && "opacity-50"
       )}
-      disabled={isLocked}
     >
-      <Icon className={isCompleted && "text-primary"} />
-      {label}
+      <Icon className={cn("!h-4 !w-4",isCompleted && "text-primary")} />
+      <span className={cn("text-sm text-break text-start w-[250px]")}>{label}</span>
     </button>
   );
 };

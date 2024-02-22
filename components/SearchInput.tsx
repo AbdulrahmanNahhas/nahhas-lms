@@ -3,7 +3,7 @@
 import qs from "query-string";
 import { Search } from "lucide-react";
 import { useEffect, useState } from "react";
-import { useSearchParams, useRouter, usePathname } from "next/navigation";
+import { useSearchParams, useRouter, usePathname} from "next/navigation";
 
 import { Input } from "@/components/ui/input";
 import { useDebounce } from "@/hooks/use-debounce";
@@ -37,9 +37,9 @@ const SearchInput = ({className}: {className?: string}) => {
         className="h-4 w-4 absolute top-3 left-3 text-slate-600"
       />
       <Input
-        onChange={(e) => setValue(e.target.value)}
+        onChange={(e) => {router.push("/search"); setValue(e.target.value)}}
         value={value}
-        className="w-full pl-9 rounded-full bg-primary/5 dark:bg-primary/10 focus-visible:ring-primary/50"
+        className="w-full pl-9 text-secondary-foreground rounded-full focus-visible:ring-primary/50"
         placeholder="Search for a course"
       />
     </div>

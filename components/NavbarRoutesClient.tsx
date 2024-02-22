@@ -14,11 +14,6 @@ const NavbarRoutesClient = () => {
 
   return (
     <>
-      {isSearchPage && (
-        <div className="hidden md:block">
-          <SearchInput />
-        </div>
-      )}
       {isTecacherPage || isPlayerPage ? (
         <Button variant={"ghost"} asChild>
           <Link href="/dashboard">

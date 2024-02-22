@@ -36,7 +36,7 @@ const CoursesList = ({ items }: CourseListProps) => {
       </div>
       <div>
         {items.length === 0 && (
-          <div className="container p-6 flex items-center justify-center flex-warp h-full text-muted-foreground bg-accent dark:bg-accent/50 rounded-xl">
+          <div className="container p-6 flex items-center justify-center text-muted-foreground bg-accent dark:bg-accent/50 rounded-xl h-full w-full">
             No courses found
           </div>
         )}
