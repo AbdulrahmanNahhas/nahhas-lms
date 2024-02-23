@@ -34,8 +34,8 @@ const CourseCard = ({
   description,
 }: CourseCardProps) => {
   return (
-    <div className="overflow-hidden rounded-2xl border border-border/50 group w-[300px] relative group">
-      <div className="w-[300px] h-[195px] overflow-hidden p-3 group-hover:p-[6px] !duration-300 bg-accent/25 group-hover:bg-accent/50">
+    <div className="overflow-hidden rounded-2xl border border-border/50 group max-w-[400px] min-w-[300px] relative group">
+      <div className="max-w-[400px] min-w-[300px] h-[195px] overflow-hidden p-3 group-hover:p-[6px] !duration-300 bg-accent/25 group-hover:bg-accent/50">
         <CldImage
           aspectRatio="video"
           width={1600}

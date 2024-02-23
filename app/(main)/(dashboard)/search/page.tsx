@@ -28,10 +28,9 @@ const Searchpage = async ({searchParams}: SearchPageProps) => {
 
   return (
     <>
-
-      <Categories items={categories} />
-      <div className="px-6 flex items-start flex-wrap gap-6 justify-start overflow-y-scroll bg-secondary mx-3 md:mx-0 py-6 rounded-3xl md:h-[calc(100vh-170px)] md:rounded-none md:rounded-bl-3xl mt-5 md:mt-1 md:rounded-tl-xl">
-      <CoursesList items={courses} />
+      <Categories items={categories}/>
+      <div className="px-6 overflow-y-scroll bg-secondary mx-0 md:mx-auto py-6 rounded-none md:h-[calc(100vh-170px)] md:rounded-none md:rounded-bl-3xl md:mt-1 md:rounded-tl-xl container">
+        <CoursesList items={courses} />
       </div>
     </>
   );
