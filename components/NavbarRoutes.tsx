@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import Link from "next/link";
 import LogOutButton from "./LogOutButton";
+import { isTeacher } from "@/lib/teacher";
 
 const NavbarRoutes = async () => {
   const { userId } = auth();
@@ -45,6 +46,13 @@ const NavbarRoutes = async () => {
                   <Link href={"/settings"}>Settings</Link>
                 </DropdownMenuItem>
 
+                {isTeacher(userId) && (
+                  <DropdownMenuItem asChild>
+                    <Link href="/teacher/courses" className="w-full pr-5">
+                      Teacher Dashboard
+                    </Link>
+                  </DropdownMenuItem>
+                )}
                 <DropdownMenuItem asChild>
                   <LogOutButton />
                 </DropdownMenuItem>

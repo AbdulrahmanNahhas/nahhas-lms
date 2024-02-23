@@ -33,7 +33,7 @@ const guestRoutes = [
 const teacherRoutes = [
   {
     icon: ArrowLeft,
-    label: "Exit",
+    label: "Student Dashboard",
     href: "/dashboard"
   },
   {

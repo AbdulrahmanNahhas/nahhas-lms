@@ -14,22 +14,20 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import Link from "next/link";
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from "@/components/ui/alert-dialog";
 import { toast } from "sonner";
 import axios from "axios";
-import { redirect, useRouter } from "next/navigation";
+import { redirect } from "next/navigation";
 import { Badge } from "@/components/ui/badge";
 import { AiFillEyeInvisible } from "react-icons/ai";
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 
 export const columns: ColumnDef<Course>[] = [
   {
@@ -60,23 +58,28 @@ export const columns: ColumnDef<Course>[] = [
         </Button>
       );
     },
-    cell: ({row}) => {
+    cell: ({ row }) => {
       const price = parseFloat(row.getValue("price"));
       const formatted = Intl.NumberFormat("en-US", {
         style: "currency",
-        currency: "TRY"
+        currency: "TRY",
       }).format(price);
 
       return (
-        <Badge variant={price === 0 ? "secondary": "outline"} className={price !== 0 && price !== null ? " bg-transparent border-transparent" : ""}>
+        <Badge
+          variant={price === 0 ? "secondary" : "outline"}
+          className={
+            price !== 0 && price !== null
+              ? " bg-transparent border-transparent"
+              : ""
+          }
+        >
           {price === 0 && "For Free"}
           {price === null && "Undefined"}
-          {price !== 0 && price !== null && (
-            <>{formatted}</>
-          )}
+          {price !== 0 && price !== null && <>{formatted}</>}
         </Badge>
-      )
-    }
+      );
+    },
   },
   {
     accessorKey: "isPublished",
@@ -91,15 +94,21 @@ export const columns: ColumnDef<Course>[] = [
         </Button>
       );
     },
-    cell: ({row}) => {
+    cell: ({ row }) => {
       const isPublished = row.getValue("isPublished") || false;
 
       return (
-        <Badge variant={isPublished ? "default": "secondary"}>
-          {isPublished ? "Published" : <><AiFillEyeInvisible className="mr-1"/> Draft</>}
+        <Badge variant={isPublished ? "default" : "secondary"}>
+          {isPublished ? (
+            "Published"
+          ) : (
+            <>
+              <AiFillEyeInvisible className="mr-1" /> Draft
+            </>
+          )}
         </Badge>
-      )
-    }
+      );
+    },
   },
   {
     id: "actions",
@@ -116,7 +125,7 @@ export const columns: ColumnDef<Course>[] = [
       };
 
       return (
-        <AlertDialog>
+        <Dialog>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="ghost" className="h-8 w-8 p-0">
@@ -135,7 +144,9 @@ export const columns: ColumnDef<Course>[] = [
               <DropdownMenuSeparator />
               <Link href={`/courses/${course.id}`}>
                 <DropdownMenuItem>
-                  <Eye className="w-4 h-4 mr-2" />View Course</DropdownMenuItem>
+                  <Eye className="w-4 h-4 mr-2" />
+                  View Course
+                </DropdownMenuItem>
               </Link>
               <Link href={`/teacher/courses/${course.id}`}>
                 <DropdownMenuItem>
@@ -145,38 +156,45 @@ export const columns: ColumnDef<Course>[] = [
               </Link>
               <DropdownMenuSeparator />
               <DropdownMenuItem asChild>
-                <AlertDialogTrigger className="flex gap-1 items-center w-full">
+                <DialogTrigger className="flex gap-1 items-center w-full">
                   <>
                     <Trash2 className="w-4 h-4 mr-2" />
                     Delete Course
                   </>
-                </AlertDialogTrigger>
+                </DialogTrigger>
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
-          <AlertDialogContent>
-            <AlertDialogHeader>
-              <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
-              <AlertDialogDescription>
+
+          <DialogContent className="sm:max-w-[425px] border">
+            <DialogHeader>
+              <DialogTitle>Are you absolutely sure?</DialogTitle>
+              <DialogDescription>
                 This action cannot be undone. This will permanently delete this
-                chapter and remove it&apos;s data from our database.
-              </AlertDialogDescription>
-            </AlertDialogHeader>
-            <AlertDialogFooter>
-              <AlertDialogCancel>Cancel</AlertDialogCancel>
-              <AlertDialogAction asChild onClick={onDelete}>
+                course and remove it&apos;s data from our database.
+              </DialogDescription>
+            </DialogHeader>
+            <div className="flex w-full gap-2 items-center">
+              <DialogClose asChild>
                 <Button
-                  variant="destructive"
-                  className="bg-destructive text-destructive-foreground hover:bg-destructive/75"
+                  className="w-full rounded-md hover:scale-100"
+                  variant="outline"
                 >
-                  Delete
+                  Cancel
                 </Button>
-              </AlertDialogAction>
-            </AlertDialogFooter>
-          </AlertDialogContent>
-        </AlertDialog>
+              </DialogClose>
+              <Button
+                className="w-full rounded-md hover:scale-100"
+                variant="destructive"
+                onClick={onDelete}
+              >
+                Delete Course
+              </Button>
+            </div>
+          </DialogContent>
+        </Dialog>
       );
     },
     enableHiding: false,
-  }
+  },
 ];

@@ -59,7 +59,7 @@ function CreateCourse() {
   }
 
   return (
-    <div className="md:p-6 py-6 md:py-10 container max-w-2xl h-full flex flex-col items-start justify-center">
+    <div className="md:p-6 py-6 md:p-10 bg-secondary/50 text-secondary-foreground md:rounded-3xl container max-w-3xl h-full flex flex-col items-start justify-center">
       <h1 className="font-bold text-xl sm:text-2xl md:text-3xl">Name your Course</h1>
       <p className="text-muted-foreground mt-1 text-sm sm:text-base">
         What would you like to name your course?

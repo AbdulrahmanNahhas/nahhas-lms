@@ -1,28 +1,26 @@
-"use client"
+"use client";
 
-import React from 'react'
+import React from "react";
+import axios from "axios";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
+import { Button } from "@/components/ui/button";
 import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from "@/components/ui/alert-dialog";
-import axios from 'axios';
-import { toast } from 'sonner';
-import { useRouter } from 'next/navigation';
-import { Button } from '@/components/ui/button';
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 
 interface ConfirmDeleteProps {
   courseId: string;
   children: React.ReactNode;
 }
 
-const ConfirmDelete = ({courseId, children}: ConfirmDeleteProps) => {
+const ConfirmDelete = ({ courseId, children }: ConfirmDeleteProps) => {
   const router = useRouter();
 
   const onDelete = async () => {
@@ -39,32 +37,40 @@ const ConfirmDelete = ({courseId, children}: ConfirmDeleteProps) => {
   };
 
   return (
-    <AlertDialog>
-      <AlertDialogTrigger asChild>
-        {children}
-      </AlertDialogTrigger>
-      <AlertDialogContent>
-        <AlertDialogHeader>
-          <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
-          <AlertDialogDescription>
-            This action cannot be undone. This will permanently delete this
-            chapter and remove it&apos;s data from our database.
-          </AlertDialogDescription>
-        </AlertDialogHeader>
-        <AlertDialogFooter>
-          <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction asChild onClick={onDelete}>
-            <Button
-              variant="destructive"
-              className="bg-destructive text-destructive-foreground hover:bg-destructive/75"
-            >
-              Delete
-            </Button>
-          </AlertDialogAction>
-        </AlertDialogFooter>
-      </AlertDialogContent>
-    </AlertDialog>
-  )
-}
+    <Dialog>
+    <DialogTrigger asChild>
+      {children}  
+    </DialogTrigger>
 
-export default ConfirmDelete
+      <DialogContent className="sm:max-w-[425px] border">
+        <DialogHeader>
+          <DialogTitle>Are you absolutely sure?</DialogTitle>
+          <DialogDescription>
+            This action cannot be undone. This will permanently delete this
+            course and remove it&apos;s data from our database.
+          </DialogDescription>
+        </DialogHeader>
+        <div className="flex w-full gap-2 items-center">
+          <DialogClose asChild>
+            <Button
+              className="w-full rounded-md hover:scale-100"
+              variant="outline"
+            >
+              Cancel
+            </Button>
+          </DialogClose>
+          <Button
+            className="w-full rounded-md hover:scale-100"
+            variant="destructive"
+            onClick={onDelete}
+          >
+            Delete Course
+          </Button>
+        </div>
+      </DialogContent>
+
+    </Dialog>
+  );
+};
+
+export default ConfirmDelete;

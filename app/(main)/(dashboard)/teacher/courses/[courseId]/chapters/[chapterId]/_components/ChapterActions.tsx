@@ -2,22 +2,20 @@
 
 import { Button } from "@/components/ui/button";
 import { LuTrash2 } from "react-icons/lu";
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from "@/components/ui/alert-dialog";
 import { useState } from "react";
 import { toast } from "sonner";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { Loader2 } from "lucide-react";
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 
 interface ChapterActionsProps {
   disabled: boolean;
@@ -39,10 +37,14 @@ const ChapterActions = ({
     try {
       setIsLoading(true);
       if (isPublished) {
-        await axios.patch(`/api/courses/${courseId}/chapters/${chapterId}/unpublish`);
+        await axios.patch(
+          `/api/courses/${courseId}/chapters/${chapterId}/unpublish`
+        );
         toast.success("Chapter unpublished!");
       } else {
-        await axios.patch(`/api/courses/${courseId}/chapters/${chapterId}/publish`);
+        await axios.patch(
+          `/api/courses/${courseId}/chapters/${chapterId}/publish`
+        );
         toast.success("Chapter published!");
       }
 
@@ -72,11 +74,16 @@ const ChapterActions = ({
 
   return (
     <div className="flex items-center justify-center gap-x-2">
-      <Button disabled={disabled || isLoading} onClick={onClick} variant="outline">
+      <Button
+        disabled={disabled || isLoading}
+        onClick={onClick}
+        variant="outline"
+      >
         {isPublished ? "UnPublish" : "Publish"}
       </Button>
-      <AlertDialog>
-        <AlertDialogTrigger asChild>
+
+      <Dialog>
+        <DialogTrigger asChild>
           <Button
             size={"icon"}
             disabled={disabled || isLoading}
@@ -88,28 +95,35 @@ const ChapterActions = ({
               <LuTrash2 className="h-4 w-4" />
             )}
           </Button>
-        </AlertDialogTrigger>
-        <AlertDialogContent>
-          <AlertDialogHeader>
-            <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
-            <AlertDialogDescription>
+        </DialogTrigger>
+        <DialogContent className="sm:max-w-[425px] border">
+          <DialogHeader>
+            <DialogTitle>Are you absolutely sure?</DialogTitle>
+            <DialogDescription>
               This action cannot be undone. This will permanently delete this
               chapter and remove it&apos;s data from our database.
-            </AlertDialogDescription>
-          </AlertDialogHeader>
-          <AlertDialogFooter>
-            <AlertDialogCancel>Cancel</AlertDialogCancel>
-            <AlertDialogAction asChild onClick={onDelete} disabled={isLoading}>
+            </DialogDescription>
+          </DialogHeader>
+          <div className="flex w-full gap-2 items-center">
+            <DialogClose asChild>
               <Button
-                variant="destructive"
-                className="bg-destructive text-destructive-foreground hover:bg-destructive/75"
+                className="w-full rounded-md hover:scale-100"
+                variant="outline"
               >
-                Delete
+                Cancel
               </Button>
-            </AlertDialogAction>
-          </AlertDialogFooter>
-        </AlertDialogContent>
-      </AlertDialog>
+            </DialogClose>
+            <Button
+              className="w-full rounded-md hover:scale-100"
+              variant="destructive"
+              onClick={onDelete}
+              disabled={isLoading}
+            >
+              Delete Chapter
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
