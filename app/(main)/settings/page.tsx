@@ -1,6 +1,6 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import { isTeacher } from "@/lib/teacher";
 import { SignOutButton, useAuth } from "@clerk/nextjs";
 import { useTheme } from "next-themes";
@@ -118,8 +118,8 @@ function Page() {
             I don&apos;t know what to write here :D
           </p>
           <div className="flex pt-4 gap-4 items-center flex-wrap">
-            <Button variant={"outline"}>Github</Button>
-            <Button variant={"outline"}>Donate</Button>
+            <Link className={buttonVariants({variant:"outline"})} href={"https://github.com/AbdulrahmanNahhas/nahhas-lms"}>Github</Link>
+            <Button variant={"outline"} disabled>Donate</Button>
           </div>
         </div>
 

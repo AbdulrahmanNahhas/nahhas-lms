@@ -131,16 +131,21 @@ const page = () => {
           asperiores dolorem temporibus assumenda placeat fugit nobis eaque
           neque aperiam, earum, aliquid dignissimos aspernatur enim.
         </p>
-        <div className="flex items-center justify-center">
+        <div className="flex items-center justify-center gap-3">
           {userId ? (
             <Link className={cn(buttonVariants({ size: "lg" }), "duration-300 transition-all")} href="/dashboard">
               Dashboard
             </Link>
           ) : (
-            <Link className={cn(buttonVariants({ size: "lg" }), "duration-300 transition-all")} href="/sign-up">
-              Sign up
-            </Link>
+            <>
+              <Link className={cn(buttonVariants({ size: "lg" }), "duration-300 transition-all")} href="/sign-up">
+                Sign up
+              </Link>
+            </>
           )}
+          <Link className={cn(buttonVariants({ variant: "outline", size: "lg" }), "duration-300 transition-all")} href="https://github.com/AbdulrahmanNahhas/nahhas-lms">
+            Github
+          </Link>
         </div>
       </section>
       <section className="flex flex-col items-center justify-center h-full gap-6 py-14 w-screen">
