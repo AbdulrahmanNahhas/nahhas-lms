@@ -34,15 +34,15 @@ Check out the demo video for this project on YouTube: [Demo Video](https://youtu
 - Rich text editor for chapter description
 
 ## Tech Stack
-- Next.js
-- Supabase
-- MongoDB
-- Prisma
-- TypeScript
-- TailwindCSS
-- Shadcn
-- Stripe
-- Vercel
+- Framework: Next.js 14
+- Database: Prisma
+- Authentication: Clerk
+- UI Components: Radix UI, Shadcn/ui
+- Forms: React Hook Form
+- API Requests: Axios
+- Styling: Tailwind CSS
+- File Uploads: Uploadthing, Cloudinary
+- Markdown Support: React Markdown Preview, React MD Editor
 
 ## Installation
 
