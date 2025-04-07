@@ -1,14 +1,19 @@
 # Nahhas LMS Website
 
-This is a Learning Management System (LMS) website built with Next.js. The purpose of this project is to provide a comprehensive platform for online education, tailored for the Syrian community.
+Nahhas LMS is a modern, open-source Learning Management System (LMS) built with **Next.js 14**. It offers a lightweight and extendable platform for online learning, course creation, and student management.
 
-## Demo Video
-
-Check out the demo video for this project on YouTube: [Demo Video](https://youtu.be/0g7wvi6tehQ)
+> 🕰️ _Note: This project has not received updates since **July 2024**. Community contributions are welcome to help keep it alive!_
 
 ---
 
-## Table of Contents
+## 🎥 Demo Video
+
+Watch the LMS in action on YouTube: [Demo Video](https://youtu.be/0g7wvi6tehQ)
+
+---
+
+## 📚 Table of Contents
+
 - [Features](#features)
 - [Tech Stack](#tech-stack)
 - [Installation](#installation)
@@ -16,68 +21,67 @@ Check out the demo video for this project on YouTube: [Demo Video](https://youtu
 - [Contributing](#contributing)
 - [License](#license)
 
-## Features
-- Browse & Filter Courses
-- Purchase Courses using Stripe
-- NoSQL database using Mongodb
-- Authentication using Clerk
-- ORM using Prisma
-- Mark Chapters as Completed or Uncompleted
-- Progress Calculation of each Course
-- Student Dashboard
-- Teacher mode
-- Create new Courses
-- Create new Chapters
-- Easily reorder chapter position with drag n’ drop
-- Upload thumbnails, attachments and videos using UploadThing
-- Video player using react-player
-- Rich text editor for chapter description
+---
 
-## Tech Stack
-- Framework: Next.js 14
-- Database: Prisma
-- Authentication: Clerk
-- UI Components: Radix UI, Shadcn/ui
-- Forms: React Hook Form
-- API Requests: Axios
-- Styling: Tailwind CSS
-- File Uploads: Uploadthing, Cloudinary
-- Markdown Support: React Markdown Preview, React MD Editor
+## ✨ Features
 
-## Installation
+- ✅ Browse & filter available courses
+- 💳 Purchase courses using **Stripe**
+- 🧠 Track progress per chapter & course
+- 👨‍🎓 Student Dashboard with chapter management
+- 👩‍🏫 Teacher mode with course creation tools
+- 🧩 Add, edit & reorder chapters via drag-and-drop
+- 🖼️ Upload videos, thumbnails, and attachments with **UploadThing**
+- 🎥 Built-in video player using `react-player`
+- 📝 Rich text editor for chapter descriptions
+- 🔒 Authentication powered by **Clerk**
+- 📦 NoSQL storage using **MongoDB** with **Prisma ORM**
 
-### Prerequisites
-Make sure you have the following installed:
+---
+
+## 🛠 Tech Stack
+
+- **Framework:** Next.js 14
+- **Database:** MongoDB (via Prisma)
+- **Authentication:** Clerk
+- **UI Libraries:** Shadcn/UI, Radix UI
+- **Forms:** React Hook Form
+- **API:** Axios
+- **Styling:** Tailwind CSS
+- **Uploads:** UploadThing, Cloudinary
+- **Markdown:** React Markdown Preview, React MDE
+
+---
+
+## 🚀 Installation
+
+### 📦 Prerequisites
+
+Ensure the following are installed on your system:
+
 - Node.js
-- npm or yarn
+- npm or Yarn
 - Git
 
-### Clone the Repository
-To clone the project, run the following command in your terminal:
+### 📁 Clone the Repository
 
 ```bash
 git clone https://github.com/AbdulrahmanNahhas/nahhas-lms.git
-```
-
-### Navigate to the Project Directory
-```bash
 cd nahhas-lms
 ```
 
-### Install Dependencies
+### 📥 Install Dependencies
 
-Using npm:
 ```bash
 npm install
-```
-Or using yarn:
-```bash
+# or
 yarn install
 ```
 
-### Set Up Environment Variables
+### 🔐 Setup Environment Variables
 
-Create a .env.local file in the root directory and add your environment variables. Here is an example:
+Create a `.env.local` file in the root directory:
+
 ```bash
 NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=
 CLERK_SECRET_KEY=
@@ -100,34 +104,40 @@ NEXT_PUBLIC_APP_URL=http://localhost:3000
 STRIPE_API_KEY=
 STRIPE_WEBHOOK_SECRET=
 ```
-You can also find an example environment file in .env.example.
 
-### Start the Development Server
+You can refer to `.env.example` for a sample config.
 
-Using npm:
+### ▶️ Run the Development Server
+
 ```bash
 npm run dev
-```
-Or using yarn:
-```bash
+# or
 yarn dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Visit [http://localhost:3000](http://localhost:3000) in your browser.
 
-## Usage
+---
 
-To use the LMS website, navigate to [http://localhost:3000](http://localhost:3000) in your web browser. From here, you can access all the features of the platform.
+## 🧪 Usage
 
-## Contributing
+Once the dev server is running, open your browser and go to: [http://localhost:3000](http://localhost:3000)
 
-Contributions are welcome! Please fork the repository and create a pull request with your changes. 
+From there, you can:
+- Browse courses
+- Log in as a student or teacher
+- Create, purchase, and track course content
 
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+---
 
-## License
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+## 🤝 Contributing
+
+This project was originally built as a personal learning experience and is no longer actively maintained.
+
+Feel free to fork it, explore the code, and use it as a reference or starting point for your own LMS project. I'm glad if it helps you learn something — just like it helped me.
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for more details.
